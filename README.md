@@ -2,4 +2,5 @@
 ## 2017-9-22 
 [ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/description/)
 ## 2018-4-7 
-[Jewels and Stones](https://leetcode-cn.com/problems/jewels-and-stones/description//)
+[Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/description//)
+[Judge Route Circle](https://leetcode.com/problems/judge-route-circle/description/)
