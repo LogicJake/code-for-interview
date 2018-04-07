@@ -1,5 +1,8 @@
 package leetcoede;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Solution {
 	public int numJewelsInStones(String J, String S) {
 		int num = 0;
@@ -37,5 +40,18 @@ public class Solution {
 		else {
 	        return false;
 		}
+    }
+	
+	public int uniqueMorseRepresentations(String[] words) {
+        String[] Morse = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+		Set<String> reSet = new HashSet<>();
+        for (int i = 0; i < words.length; i++) {
+			String tString = "";
+			for (int j = 0; j < words[i].length(); j++) {
+				tString += Morse[words[i].charAt(j)-'a'];
+			}
+			reSet.add(tString);
+		}
+        return reSet.size();
     }
 }
