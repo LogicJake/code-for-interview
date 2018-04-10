@@ -10,5 +10,5 @@
 [Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/description/)  
 ## 2018-4-10
 [Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/description/)  
-[Array Partition I](https://leetcode.com/problems/array-partition-i/description/)
+[Array Partition I](https://leetcode.com/problems/array-partition-i/description/)  
 [Subdomain Visit Count](https://leetcode.com/problems/subdomain-visit-count/description/)
