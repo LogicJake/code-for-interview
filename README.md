@@ -7,4 +7,8 @@
 [Unique Morse Code Words](https://leetcode.com/problems/unique-morse-code-words/description/)    
 ## 2018-4-9  
 [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/description/)  
-[Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/description/)
+[Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/description/)  
+## 2018-4-10
+[Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/description/)  
+[Array Partition I](https://leetcode.com/problems/array-partition-i/description/)
+[Subdomain Visit Count](https://leetcode.com/problems/subdomain-visit-count/description/)

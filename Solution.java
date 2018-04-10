@@ -1,7 +1,13 @@
 package leetcoede;
 
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Set;
 
 
@@ -114,4 +120,59 @@ public class Solution {
         t1.right = mergeTrees(t1.right, t2.right);
         return t1;
 	}
+
+	public Boolean isDividing(int num) {
+		int num_o = num;
+		while(num > 0) {
+			if(num%10 != 0 &&  num_o%(num%10)==0)
+				num = num/10;
+			else
+				return false;
+		}
+		return true;
+		
+	}
+	
+	public List<Integer> selfDividingNumbers(int left, int right) {
+		List<Integer> res = new LinkedList<Integer>();
+		for(int i = left; i <= right; i++) {
+			if(isDividing(i)) {
+				res.add(i);
+			}
+		}
+		return res;
+    }
+	
+	public int arrayPairSum(int[] nums) {
+        int res = 0;
+		Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i+=2) {
+			res+=nums[i];
+		}
+        return res;
+    }
+
+    public List<String> subdomainVisits(String[] cpdomains) {
+    	Map<String,Integer> map = new HashMap<String, Integer>();
+    	for (int i = 0; i < cpdomains.length; i++) {
+			String[] splitstring = cpdomains[i].split(" ");
+			int count = Integer.parseInt(splitstring[0]);
+			String domain = splitstring[1];
+			map.put(domain, map.getOrDefault(domain, 0)+count);
+			while(domain.indexOf(".")!=-1) {
+				domain = domain.substring(domain.indexOf(".")+1);
+				map.put(domain, map.getOrDefault(domain, 0)+count);
+			}
+		}
+    	List<String> res = new LinkedList<String>();
+    	//或者用keySet遍历
+    	Iterator<String> it = map.keySet().iterator();  
+        while(it.hasNext()) {  
+            String key = (String)it.next();  
+            Integer value = map.get(key);
+            String tmp = String.valueOf(value)+" "+key;
+            res.add(tmp);
+        }  
+		return res;
+    }
 }
