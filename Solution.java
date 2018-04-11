@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -174,5 +175,113 @@ public class Solution {
             res.add(tmp);
         }  
 		return res;
+    }
+    
+    public int[] numberOfLines(int[] widths, String S) {
+    	int remindWidth = 100;
+    	int lineNum = 1;
+    	for (char c : S.toCharArray()) {
+			int width = widths[c-'a'];
+			if (width <= remindWidth) {
+				remindWidth -= width;
+			}
+			else {
+				lineNum++;
+				remindWidth = 100-width;
+			}
+		}
+    	int[] res = {lineNum,100-remindWidth};
+    	return res;
+    }
+    
+	private String reverseString(String string) {
+		int i = 0;
+		int j = string.length()-1;
+		char[] lists = string.toCharArray();
+		while(j>i) {
+			char tmp = lists[i];
+			lists[i] = lists[j];
+			lists[j] = tmp;
+			i++;
+			j--;
+		}
+		return String.valueOf(lists);
+	}
+    
+    public String reverseWords(String s) {
+    	String[] ss = s.split(" ");
+    	String reString = "";
+    	for (int i = 0; i < ss.length; i++) {
+    		if (i == 0) {
+    			reString = reString+reverseString(ss[i]);
+			}
+    		else {
+    			reString = reString+" "+reverseString(ss[i]);
+			}
+    		
+		}
+    	return reString;
+    }
+
+    public TreeNode trimBST(TreeNode root, int L, int R) {
+        if (root == null) {
+        	return root;
+		}
+        if (root.val < L)
+			root = trimBST(root.right, L, R);
+        else if (root.val > R) 
+        {
+        	root = trimBST(root.left, L, R);
+		}
+        else {
+        	root.left = trimBST(root.left, L, R);
+        	root.right = trimBST(root.right, L, R);
+		}
+        return root;
+    }
+
+    public int calPoints(String[] ops) {
+        List<Integer> scores = new ArrayList<Integer>();		//stack结构更好
+    	int res = 0;
+        for (int i = 0; i < ops.length; i++) {
+			switch (ops[i]) {
+			case "+":{
+				int this_score = scores.get(scores.size()-1)+scores.get(scores.size()-2);
+				scores.add(this_score);
+				break;
+			}
+			case "D":{
+				int this_score = scores.get(scores.size()-1)*2;
+				scores.add(this_score);
+				break;
+			}
+			case "C":{
+				scores.remove(scores.size()-1);
+				break;
+			}
+			default:
+				scores.add(Integer.parseInt(ops[i]));
+				break;
+			}
+		}
+        for (int i = 0; i < scores.size(); i++) {
+			res += scores.get(i);
+		}
+        return res;
+    }
+
+    public int distributeCandies(int[] candies) {
+    	//只需要知道种类数量，并不需要知道每个种类有多少个。所以用set而不是map
+        Map<Integer, Integer> nums = new HashMap<Integer,Integer>();
+    	for (int i = 0; i < candies.length; i++) {
+			nums.put(candies[i], nums.getOrDefault(candies[i], 0)+1);
+		}
+    	System.out.println(nums);
+    	if (nums.size() >= candies.length/2) {
+			return candies.length/2;
+		}
+    	else {
+    		return nums.size();
+    	}
     }
 }

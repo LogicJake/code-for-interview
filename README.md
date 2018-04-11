@@ -11,4 +11,13 @@
 ## 2018-4-10
 [Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/description/)  
 [Array Partition I](https://leetcode.com/problems/array-partition-i/description/)  
-[Subdomain Visit Count](https://leetcode.com/problems/subdomain-visit-count/description/)
+[Subdomain Visit Count](https://leetcode.com/problems/subdomain-visit-count/description/)  
+## 2018-4-20  
+[Number of Lines To Write String](https://leetcode.com/problems/number-of-lines-to-write-string/description/)  
+[Reverse Words in a String III](https://leetcode.com/problems/reverse-words-in-a-string-iii/description/)  
+[Trim a Binary Search Tree](https://leetcode.com/problems/trim-a-binary-search-tree/description/)  
+[Baseball Game](https://leetcode.com/problems/baseball-game/description/)  
+[Distribute Candies](https://leetcode.com/problems/distribute-candies/description/)  
+
+
+
