@@ -18,6 +18,12 @@
 [Trim a Binary Search Tree](https://leetcode.com/problems/trim-a-binary-search-tree/description/)  
 [Baseball Game](https://leetcode.com/problems/baseball-game/description/)  
 [Distribute Candies](https://leetcode.com/problems/distribute-candies/description/)  
+## 2018-4-12  
+[Toeplitz Matrix](https://leetcode.com/problems/toeplitz-matrix/description/)  
+[Reshape the Matrix](https://leetcode.com/problems/reshape-the-matrix/description/)  
+[Average of Levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/description/)  
+
+
 
 
 

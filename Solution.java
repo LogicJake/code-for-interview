@@ -2,6 +2,7 @@ package leetcoede;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -282,6 +283,91 @@ public class Solution {
 		}
     	else {
     		return nums.size();
+    	}
+    }
+
+    public boolean isToeplitzMatrix(int[][] matrix) {
+    	//当且仅当r1 - c1 == r2 - c2，为对角线
+    	int heigh = matrix.length;
+    	int width = matrix[0].length;
+    	for(int k = 0; k < width; k++) {
+    		int i = 0;		//第一行查对角线
+    		int j = k;
+    		int number = matrix[i][j]; 		//起始值
+    		i++;
+    		j++;
+    		while(i < heigh && j < width) {
+    			if (matrix[i][j]!=number) {
+					return false;
+				}
+    			i++;
+    			j++;
+    		}
+    	}
+    	for(int k = 0; k < heigh; k++) {
+    		int i = k;		
+    		int j = 0;	//第一列查对角线
+    		int number = matrix[i][j]; 		//起始值
+    		i++;
+    		j++;
+    		while(i < heigh && j < width) {
+    			System.out.println(i+" "+j);
+    			if (matrix[i][j]!=number) {
+					return false;
+				}
+    			i++;
+    			j++;
+    		}
+    	}
+    	return true;
+    }
+
+    public int[][] matrixReshape(int[][] nums, int r, int c) {
+    	int heigh = nums.length;
+    	int width = nums[0].length;
+    	if (r*c!=heigh*width) {
+			return nums;
+		}
+    	else {
+    		int k = 0;
+    		int[][] res = new int[r][c];
+    		for(int i = 0; i < r; i++)
+    		{
+    			for(int j = 0; j < c; j++)
+    			{
+    				res[i][j] = nums[k/width][k%width];
+    				k++;
+    			}
+    		}
+    		return res;
+    	}
+    }
+    
+    public List<Double> averageOfLevels(TreeNode root) {
+    	List<Double> res = new LinkedList<Double>();
+    	Queue<TreeNode> queue = new LinkedList<TreeNode>();
+    	if (root == null) {
+			return res;
+		}
+    	else
+    	{
+    		queue.add(root);
+    		while (!queue.isEmpty()) {
+				int num = queue.size();		//这一层有多少数据
+				int i = num;
+				double total = 0;
+				while(i!=0) {
+					TreeNode head = queue.poll();
+					total += head.val;
+					if (head.left!=null)
+						queue.add(head.left);
+					if(head.right!=null)
+						queue.add(head.right);
+					i--;
+				}
+				res.add(total/num);
+			}
+    		return res;
     	}
     }
 }
