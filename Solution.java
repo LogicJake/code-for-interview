@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
+import java.util.TreeMap;
 
 
 public class Solution {
@@ -369,5 +370,25 @@ public class Solution {
 			}
     		return res;
     	}
+    }
+    
+    public int findLUSlength(String a, String b) {
+        if (a.equals(b)) {
+			return -1;
+		}else {
+			return Math.max(a.length(), b.length());
+		}
+    }
+    
+    public boolean hasAlternatingBits(int n) {
+        int tmp = -1;
+    	while(n!=0) {
+    		if (tmp == n%2) {
+				return false;
+			}
+    		tmp = n%2;
+    		n /= 2;
+        }
+    	return true;
     }
 }

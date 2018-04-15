@@ -22,6 +22,11 @@
 [Toeplitz Matrix](https://leetcode.com/problems/toeplitz-matrix/description/)  
 [Reshape the Matrix](https://leetcode.com/problems/reshape-the-matrix/description/)  
 [Average of Levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/description/)  
+## 2018-4-15
+[Longest Uncommon Subsequence I](https://leetcode.com/problems/longest-uncommon-subsequence-i/description/)  
+[Binary Number with Alternating Bits](https://leetcode.com/problems/binary-number-with-alternating-bits/description/)  
+
+
 
 
 
