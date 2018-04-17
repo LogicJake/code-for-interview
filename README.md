@@ -25,6 +25,10 @@
 ## 2018-4-15
 [Longest Uncommon Subsequence I](https://leetcode.com/problems/longest-uncommon-subsequence-i/description/)  
 [Binary Number with Alternating Bits](https://leetcode.com/problems/binary-number-with-alternating-bits/description/)  
+## 2018-4-17  
+[Prime Number of Set Bits in Binary Representation](https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/description/)    
+[Rotate String](https://leetcode.com/problems/rotate-string/description/)
+
 
 
 

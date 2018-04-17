@@ -391,4 +391,49 @@ public class Solution {
         }
     	return true;
     }
+    
+    public static boolean testIsPrime(int n){
+        if (n <= 3) {
+             return n > 1;
+         }
+         
+        for(int i=2;i<=Math.sqrt(n);i++){
+            if(n%i == 0)
+                return false;
+        }
+        return true;
+    }
+    
+    public int countPrimeSetBits(int L, int R) {
+        int num = 0;
+    	for(int i = L; i <= R; i++) {
+        	String biString = Integer.toBinaryString(i);
+        	int count = 0;
+        	for (char c : biString.toCharArray()) {
+				if (c == '1') 
+					count++;
+			}
+        	if (testIsPrime(count)) {
+				num++;
+			}
+        }
+    	return num;
+    }
+
+    public boolean rotateString(String A, String B) {
+        if(A.length() == 0 && B.length() == 0)
+        	return true;
+        else if(A.length() == 0 || B.length() == 0)
+        	return false;
+        char c = B.charAt(0);
+        int index = 0;
+    	while(index!=-1) {
+        	if((A.substring(index, A.length())+A.substring(0,index)).equals(B))
+        		return true;
+        	else {
+            	index = A.indexOf(c,index+1);
+        	}
+    	}
+    	return false;
+    }
 }
