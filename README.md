@@ -27,7 +27,11 @@
 [Binary Number with Alternating Bits](https://leetcode.com/problems/binary-number-with-alternating-bits/description/)  
 ## 2018-4-17  
 [Prime Number of Set Bits in Binary Representation](https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/description/)    
-[Rotate String](https://leetcode.com/problems/rotate-string/description/)
+[Rotate String](https://leetcode.com/problems/rotate-string/description/)  
+## 2018-4-19  
+[Largest Triangle Area](https://leetcode.com/problems/largest-triangle-area/description/)  
+[Letter Case Permutation](https://leetcode.com/problems/letter-case-permutation/description/)  
+
 
 
 

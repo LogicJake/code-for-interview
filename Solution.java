@@ -436,4 +436,43 @@ public class Solution {
     	}
     	return false;
     }
+    
+    public double caluArea(double a,double b,double c) {
+    	double s = (a+b+c)/2;
+    	return Math.sqrt(s*(s-a)*(s-b)*(s-c));
+    }
+    
+    public double largestTriangleArea(int[][] points) {
+    	int N = points.length;
+    	double res = 0;
+    	for (int i = 0; i < N; ++i) {
+            for (int j = i+1; j < N; ++j) {
+                for (int k = j+1; k < N; ++k) {
+                	double a = Math.sqrt(Math.pow(points[i][0]-points[j][0], 2)+Math.pow(points[i][1]-points[j][1], 2));
+                	double b = Math.sqrt(Math.pow(points[i][0]-points[k][0], 2)+Math.pow(points[i][1]-points[k][1], 2));
+                	double c = Math.sqrt(Math.pow(points[k][0]-points[j][0], 2)+Math.pow(points[k][1]-points[j][1], 2));
+                	res = res<caluArea(a, b, c)?caluArea(a, b, c):res;
+                }
+            }
+        }
+    	return res;
+    }
+
+    public List<String> letterCasePermutation(String S) {
+        List<String> res = new LinkedList<String>();
+        res.add(S);
+    	for (int i = 0; i < S.length(); i++) {
+    		char c = S.charAt(i);
+			if(c>'9') {
+				int size = res.size();
+				for (int j = 0; j < size; j++) {
+					StringBuilder sBuilder = new StringBuilder(res.get(j));
+					char c_1 = c>='a'?(char) (c-32):(char) (c+32);
+					sBuilder.setCharAt(i, c_1);
+					res.add(sBuilder.toString());
+				}
+			}
+		}
+    	return res;	
+    }
 }
