@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
 
 
@@ -22,6 +23,16 @@ public class Solution {
 	      TreeNode right;
 	      TreeNode(int x) { val = x; }
 	}
+	
+	class Employee {
+	    // It's the unique id of each node;
+	    // unique id of this employee
+	    public int id;
+	    // the importance value of this employee
+	    public int importance;
+	    // the id of direct subordinates
+	    public List<Integer> subordinates;
+	};
 	
 	public int numJewelsInStones(String J, String S) {
 		int num = 0;
@@ -474,5 +485,67 @@ public class Solution {
 			}
 		}
     	return res;	
+    }
+    
+    int[][] grid;
+    boolean[][] seen;
+    
+    public int area(int r, int c) {
+        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length ||
+                seen[r][c] || grid[r][c] == 0)
+            return 0;
+        seen[r][c] = true;
+        return (1 + area(r+1, c) + area(r-1, c)
+                  + area(r, c-1) + area(r, c+1));
+    }
+    
+    public int maxAreaOfIsland(int[][] grid) {
+        this.grid = grid;
+        seen = new boolean[grid.length][grid[0].length];
+        int ans = 0;
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[0].length; c++) {
+                ans = Math.max(ans, area(r, c));
+            }
+        }
+        return ans;
+    }
+    
+    public int getImportance(List<Employee> employees, int id) {
+		int res = 0; 
+    	Map<Integer,Employee> mapEmployees = new HashMap<Integer,Employee>();
+		for (int i = 0; i < employees.size(); i++)
+			mapEmployees.put(employees.get(i).id, employees.get(i));
+		Stack<Employee> stack = new Stack<Employee>();
+		stack.push(mapEmployees.get(id));
+		while(!stack.empty()) {
+			Employee tmp = stack.pop();
+			res += tmp.importance;
+			for (int i = 0; i < tmp.subordinates.size(); i++)
+				stack.push(mapEmployees.get(tmp.subordinates.get(i)));
+		}
+		return res;
+    }
+
+    public String mostCommonWord(String paragraph, String[] banned) {
+    	
+    	String res = null;
+    	int num = 0;
+    	
+    	paragraph = paragraph.replace("!", "").replace(",", "").replace(".", "").replace("?","").replace("'", "").replace(";", "");
+    	String[] ss = paragraph.split(" ");
+    	Map<String,Integer> words = new HashMap<String,Integer>();
+    	for (String string : ss) {
+    		String s = string.toLowerCase();
+    		List<String> bannedList = Arrays.asList(banned);
+    		if(!bannedList.contains(s)) {
+    			words.put(string.toLowerCase(), words.getOrDefault(string.toLowerCase(), 0)+1);
+    			if(words.get(string.toLowerCase())>num) {
+    				num = words.get(string.toLowerCase());
+    				res = string.toLowerCase();
+    			}
+    		}
+		}
+    	return res;
     }
 }

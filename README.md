@@ -30,7 +30,13 @@
 [Rotate String](https://leetcode.com/problems/rotate-string/description/)  
 ## 2018-4-19  
 [Largest Triangle Area](https://leetcode.com/problems/largest-triangle-area/description/)  
-[Letter Case Permutation](https://leetcode.com/problems/letter-case-permutation/description/)  
+[Letter Case Permutation](https://leetcode.com/problems/letter-case-permutation/description/)    
+## 2018-4-21  
+[Max Area of Island](https://leetcode.com/problems/max-area-of-island/description/):heart:  
+[Employee Importance](https://leetcode.com/problems/employee-importance/description/)  
+[Most Common Word](https://leetcode.com/problems/most-common-word/description/)  
+
+
 
 
 
