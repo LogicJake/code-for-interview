@@ -548,4 +548,44 @@ public class Solution {
 		}
     	return res;
     }
+
+    public int rotatedDigits(int N) {
+        int num = 0;
+    	for (int i = 1; i <= N; i++) {
+			String string = Integer.toString(i);
+			if (string.contains("3")||string.contains("4")||string.contains("7"))
+				continue;
+			if (string.contains("2")||string.contains("5")||string.contains("6")||string.contains("9"))
+				num++;
+		}
+    	return num;
+    }
+    
+    public boolean find(TreeNode root, int k, Set < Integer > set) {
+        if (root == null)
+            return false;
+        if (set.contains(k - root.val))
+            return true;
+        set.add(root.val);
+        return find(root.left, k, set) || find(root.right, k, set);
+    }
+    
+    
+    public boolean findTarget(TreeNode root, int k) {
+    	Set < Integer > set = new HashSet();
+    	return find(root, k, set);
+    }
+    
+    public String tree2str(TreeNode t) {
+        String reString = "";
+        if (t==null)
+        	return reString;
+        if (t.left == null && t.right == null)        
+        	reString = Integer.toString(t.val);
+        else if (t.right == null)
+        	reString = Integer.toString(t.val)+"("+tree2str(t.left)+")";
+        else
+    	    reString = Integer.toString(t.val)+"("+tree2str(t.left)+")"+"("+tree2str(t.right)+")";
+        return reString;
+    }
 }
