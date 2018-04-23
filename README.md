@@ -39,3 +39,7 @@
 [Rotated Digits](https://leetcode.com/problems/rotated-digits/description/)  
 [Two Sum IV - Input is a BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/description/):heart:  
 [Construct String from Binary Tree](https://leetcode.com/problems/construct-string-from-binary-tree/description/)  
+## 2018-4-23  
+[1-bit and 2-bit Characters](https://leetcode.com/problems/1-bit-and-2-bit-characters/description/)  
+[Convert BST to Greater Tree](https://leetcode.com/problems/convert-bst-to-greater-tree/description/)  
+[Range Addition II](https://leetcode.com/problems/range-addition-ii/description/)[Time Limit Exceeded]  

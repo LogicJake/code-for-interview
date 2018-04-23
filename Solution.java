@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
+import java.util.Map.*;
 
 
 public class Solution {
@@ -587,5 +588,68 @@ public class Solution {
         else
     	    reString = Integer.toString(t.val)+"("+tree2str(t.left)+")"+"("+tree2str(t.right)+")";
         return reString;
+    }
+    
+    public boolean isOneBitCharacter(int[] bits) {
+    	int i = 0;
+    	if (bits.length == 1) {
+			return true;
+		}
+        while(i < bits.length-1) {
+			if(bits[i] == 0)
+				i++;
+			else
+				i = i+2;
+		}
+        if (i == bits.length-1)
+        	return true;
+        return false;
+    }
+    
+    public int countNode(TreeNode root) {
+    	if(root == null)
+    		return 0;
+    	
+    		return root.val+countNode(root.left);
+    }
+    private int sum = 0;
+    public TreeNode convertBST(TreeNode root) {
+        if (root != null) {
+            convertBST(root.right);
+            sum += root.val;
+            root.val = sum;
+            convertBST(root.left);
+        }
+        return root;
+    }
+    
+    public int maxCount(int m, int n, int[][] ops) {
+    	Map<Integer,Integer> M = new HashMap<>();
+    	int maxNum = 0;
+        for (int i = 0; i < ops.length; i++) {
+        	int a = ops[i][0];
+        	int b = ops[i][1];
+			for (int j = 0; j <a; j++) {
+				for (int j2 = 0; j2 < b; j2++) {
+					M.put(j*n+j2, M.getOrDefault(j*n+j2, 0)+1);
+					maxNum = Math.max(maxNum, M.get(j*n+j2));
+				}
+			}
+		}
+        int res = 0;
+//        for (Entry<Integer, Integer> entry : M.entrySet()) {
+//        	if(entry.getValue()==maxNum)
+//        		res++;
+//        }	
+        if (maxNum == 0) {
+        	return 0;
+		}
+        Iterator iter = M.keySet().iterator();
+        while (iter.hasNext()) {
+        	Object key = iter.next();
+        	if (M.get(key) == maxNum) 
+        		res++;
+        }
+        return res;
     }
 }
