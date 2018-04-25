@@ -652,4 +652,53 @@ public class Solution {
         }
         return res;
     }
+    
+    private boolean[][] visited;
+    
+    public void fill(int[][] image, int sr, int sc, int color, int newColor) {
+    	System.out.println(sr+" "+sc+" "+image[sr][sc]);
+    	if (image[sr][sc] == color) {
+    		image[sr][sc] = newColor;
+    		if (sr-1 >= 0 && !visited[sr-1][sc]) fill(image, sr-1, color, sc, newColor);
+        	if (sr+1 < image.length && !visited[sr+1][sc]) fill(image, sr+1, sc, color, newColor);
+        	if (sc+1 < image[0].length && !visited[sr][sc+1]) fill(image, sr, sc+1, color, newColor);
+        	if (sc-1 >= 0 && !visited[sr][sc-1]) fill(image, sr, sc-1, color, newColor);
+		}
+    	visited[sr][sc] = true;
+    }
+    
+    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+        this.visited = new boolean[image.length][image[0].length];
+        if (image[sr][sc] != newColor)
+        	fill(image,sr,sc,image[sr][sc],newColor);
+        return image;
+    }
+    
+    public int[][] floodFill2(int[][] image, int sr, int sc, int newColor) {
+    	
+    	if (image[sr][sc] != newColor)
+        	fill(image,sr,sc,image[sr][sc],newColor);
+        return image;
+    }
+    
+    public int getMinimumDifference(TreeNode root) {
+    	List<Integer> list = new LinkedList<Integer>();
+    	traverse_binary_tree(root, list);
+    	System.out.println(list.toString());
+    	int res = Integer.MAX_VALUE;
+    	for (int i = 0; i < list.size()-1; i++) {
+			res = Math.min(res, Math.abs(list.get(i)-list.get(i+1)));
+		}
+    	return res;
+    }
+    
+    public void traverse_binary_tree(TreeNode root,List<Integer> list) {
+    	if (root == null) {
+			return;
+		}
+    	traverse_binary_tree(root.left, list);
+    	list.add(root.val);
+        traverse_binary_tree(root.right, list);
+    }
+ 
 }

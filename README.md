@@ -43,3 +43,7 @@
 [1-bit and 2-bit Characters](https://leetcode.com/problems/1-bit-and-2-bit-characters/description/)  
 [Convert BST to Greater Tree](https://leetcode.com/problems/convert-bst-to-greater-tree/description/)  
 [Range Addition II](https://leetcode.com/problems/range-addition-ii/description/)[Time Limit Exceeded]  
+## 2018-4-25  
+[Flood Fill](https://leetcode.com/problems/flood-fill/description/)  
+[Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/description/)  
+[Minimum Distance Between BST Nodes](https://leetcode.com/problems/minimum-distance-between-bst-nodes/description/)
