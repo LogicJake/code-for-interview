@@ -1,4 +1,5 @@
 # LeetCode 刷题记录
+[![leetcode badge](https://leetcode-badge.chyroc.cn/?name=CHINA_Scy)](https://leetcode.com/china_scy/)
 ## 2017-9-22 
 [ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/description/)
 ## 2018-4-7 
