@@ -1,4 +1,5 @@
 # LeetCode 刷题记录
+[![leetcode badge](https://leetcode-badge.chyroc.cn/?name=CHINA_Scy)](https://leetcode.com/china_scy/)
 ## 2017-9-22 
 [ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/description/)
 ## 2018-4-7 
@@ -45,8 +46,8 @@
 [Range Addition II](https://leetcode.com/problems/range-addition-ii/description/)[Time Limit Exceeded]  
 ## 2018-4-25  
 [Flood Fill](https://leetcode.com/problems/flood-fill/description/)  
-[Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/description/)  
-[Minimum Distance Between BST Nodes](https://leetcode.com/problems/minimum-distance-between-bst-nodes/description/)  
+[Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/description/) 
+[Minimum Distance Between BST Nodes](https://leetcode.com/problems/minimum-distance-between-bst-nodes/description/) 
 ## 2018_5-31
 [Flipping an Image](https://leetcode.com/problems/flipping-an-image/description/)  
 [Big Countries](https://leetcode.com/problems/big-countries/description/)
