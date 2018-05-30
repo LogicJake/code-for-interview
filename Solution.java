@@ -700,5 +700,18 @@ public class Solution {
     	list.add(root.val);
         traverse_binary_tree(root.right, list);
     }
+    
+    public int[][] flipAndInvertImage(int[][] A) {
+		int start,end;
+    	for (int i = 0; i < A.length; i++) {
+			for (start = 0 , end = A[i].length-1; start <= end; start++ , end--) {
+				int tmp = A[i][start];
+				A[i][start] = (A[i][end]+1)%2;
+				A[i][end] = (tmp+1)%2;
+			}
+		}
+    	return A;
+   
+    }
  
 }

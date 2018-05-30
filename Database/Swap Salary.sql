@@ -1,0 +1,1 @@
+UPDATE Person SET FirstName = 'Fred' WHERE LastName = 'Wilson' 
