@@ -107,3 +107,5 @@ venv.bak/
 Main.java
 .classpath
 .project
+*.prefs
+/bin/
