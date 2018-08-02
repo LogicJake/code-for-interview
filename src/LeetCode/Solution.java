@@ -1,4 +1,4 @@
-package leetcoede;
+package LeetCode;
 
 import java.util.List;
 import java.util.Map;
