@@ -1,9 +1,9 @@
 package nowcoder;
 
-public class replaceSpace {
+public class ReplaceSpace {
 	/*
-	 * ¿Õ¼ä¸´ÔÓ¶È×îÐ¡£¬ÔÚStringBufferÔ­À´¿Õ¼äÉÏÍØÕ¹³ÉÌæ»»ºóµÄ¿Õ¼ä´óÐ¡
-	 * ´Ó×óµ½ÓÒ±éÀúËã¿Õ¸ñ£¬´Ó¶ø¼ÆËãÌæ»»ºóµÄ³¤¶È£¬´ÓÓÒµ½×óÌæ»»¿Õ¸ñ¡£
+	 * ï¿½Õ¼ä¸´ï¿½Ó¶ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½StringBufferÔ­ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½æ»»ï¿½ï¿½Ä¿Õ¼ï¿½ï¿½Ð¡
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½ï¿½ï¿½Õ¸ñ£¬´Ó¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ»»ï¿½ï¿½Ä³ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½æ»»ï¿½Õ¸ï¿½
 	 */
 	public String replaceSpace(StringBuffer str) {
 		int oldLen = str.length();
@@ -13,7 +13,7 @@ public class replaceSpace {
 				spaceNum++;
 			}
 		}
-		// ÍØÕ¹ºóµÄ×Ö·û´®³¤¶ÈµÈÓÚÔ­³¤¶È+2*¿Õ¸ñ³¤¶È
+		// ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Èµï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½+2*ï¿½Õ¸ñ³¤¶ï¿½
 		str.setLength(oldLen + spaceNum * 2);
 		int oldIndex = oldLen - 1;
 		int newIndex = str.length() - 1;
@@ -31,7 +31,7 @@ public class replaceSpace {
 	}
 
 	public static void main(String[] args) {
-		replaceSpace replaceSpace = new replaceSpace();
+		ReplaceSpace replaceSpace = new ReplaceSpace();
 
 		String string = "We Are  Happy";
 		StringBuffer sBuffer = new StringBuffer(string);
