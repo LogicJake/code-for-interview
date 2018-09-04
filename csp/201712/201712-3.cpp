@@ -1,9 +1,17 @@
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 #include <stdio.h>
 #include <string.h>
-using namespace std;
 
+using namespace std;
+int stoi(string s)
+{
+    stringstream ss(s);
+    int value;
+    ss >> value;
+    return value;
+}
 class my_time
 {
   public:
