@@ -1,4 +1,4 @@
-package nowcoderV1;
+package V1.nowcoder;
 
 import java.util.HashMap;
 import java.util.HashSet;

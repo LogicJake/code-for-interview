@@ -1,4 +1,4 @@
-package LeetCodeV1;
+package V1.LeetCode;
 
 import java.util.ArrayList;
 import java.util.Arrays;

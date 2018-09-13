@@ -1,4 +1,4 @@
-package nowcoderV1;
+package V1.nowcoder;
 
 public class NumberOf1 {
 	//���������ƣ���1�����жϸ�λ�Ƿ�Ϊ1

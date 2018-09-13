@@ -1,4 +1,4 @@
-package nowcoderV1;
+package V1.nowcoder;
 
 public class Power {
 	public static double Power(double base, int exponent) {
