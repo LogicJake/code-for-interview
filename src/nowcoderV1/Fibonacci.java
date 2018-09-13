@@ -1,4 +1,4 @@
-package nowcoder;
+package nowcoderV1;
 
 public class Fibonacci {
 	public int Fibonacci(int n) {

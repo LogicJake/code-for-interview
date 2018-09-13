@@ -1,4 +1,4 @@
-package nowcoder;
+package nowcoderV1;
 
 public class SearchInTwoDimensionalArray {
 	public boolean Find(int target, int[][] array) {

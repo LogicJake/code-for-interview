@@ -1,4 +1,4 @@
-package nowcoder;
+package nowcoderV1;
 
 public class RectCover {
 	public int RectCover(int target) {

@@ -1,4 +1,4 @@
-package nowcoder;
+package nowcoderV1;
 
 public class JumpFloorII {
 	public int JumpFloorII(int target) {

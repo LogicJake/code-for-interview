@@ -1,4 +1,4 @@
-package nowcoder;
+package nowcoderV1;
 
 public class ReOrderArray {
 	public static void reOrderArray(int[] array) {

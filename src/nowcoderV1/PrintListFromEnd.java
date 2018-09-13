@@ -1,9 +1,9 @@
-package nowcoder;
+package nowcoderV1;
 
 import java.util.ArrayList;
 
 /*
- * ÊäÈëÒ»¸öÁ´±í£¬°´Á´±íÖµ´ÓÎ²µ½Í·µÄË³Ğò·µ»ØÒ»¸öArrayList¡£
+ * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î²ï¿½ï¿½Í·ï¿½ï¿½Ë³ï¿½ò·µ»ï¿½Ò»ï¿½ï¿½ArrayListï¿½ï¿½
  */
 public class PrintListFromEnd {
 	public class ListNode {
@@ -15,8 +15,8 @@ public class PrintListFromEnd {
 		}
 	}
 	/*
-	 * ºÍ·´ÖÃÁ´±í²î²»¶à
-	 * ĞÂ½¨Í·Ö¸Õë£¬±éÀú¾ÉÁ´±í£¬½«½Úµã²åÈëµ½ĞÂµÄÍ·Ö¸ÕëµÄºóÃæ£¬¾ÍÍê³ÉÁË·´ÖÃ
+	 * ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î²»ï¿½ï¿½
+	 * ï¿½Â½ï¿½Í·Ö¸ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ëµ½ï¿½Âµï¿½Í·Ö¸ï¿½ï¿½Äºï¿½ï¿½æ£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½
 	 */
 	public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
 		ArrayList<Integer> res = new ArrayList<>();

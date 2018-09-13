@@ -1,4 +1,4 @@
-package nowcoder;
+package nowcoderV1;
 
 import java.util.Scanner;
 
