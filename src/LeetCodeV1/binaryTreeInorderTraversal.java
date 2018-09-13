@@ -1,4 +1,4 @@
-package LeetCode.tree;
+package LeetCodeV1;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class binaryTreeInorderTraversal {
 			Traversal(list,root.right);
 		}
 		
-		private void Traversal2(List<Integer> list,TreeNode root) {		//µü´ú
+		private void Traversal2(List<Integer> list,TreeNode root) {		//ï¿½ï¿½ï¿½ï¿½
 			Stack<TreeNode> stack = new Stack<>();
 			TreeNode pNode = root;
 			while(pNode != null || !stack.isEmpty()) {

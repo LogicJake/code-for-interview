@@ -1,19 +1,16 @@
-package LeetCode;
+package LeetCodeV1;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
-import java.util.TreeMap;
-import java.util.Map.*;
 
 
 public class Solution {
@@ -180,7 +177,7 @@ public class Solution {
 			}
 		}
     	List<String> res = new LinkedList<String>();
-    	//»òÕßÓÃkeySet±éÀú
+    	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½keySetï¿½ï¿½ï¿½ï¿½
     	Iterator<String> it = map.keySet().iterator();  
         while(it.hasNext()) {  
             String key = (String)it.next();  
@@ -255,7 +252,7 @@ public class Solution {
     }
 
     public int calPoints(String[] ops) {
-        List<Integer> scores = new ArrayList<Integer>();		//stack½á¹¹¸üºÃ
+        List<Integer> scores = new ArrayList<Integer>();		//stackï¿½á¹¹ï¿½ï¿½ï¿½ï¿½
     	int res = 0;
         for (int i = 0; i < ops.length; i++) {
 			switch (ops[i]) {
@@ -285,7 +282,7 @@ public class Solution {
     }
 
     public int distributeCandies(int[] candies) {
-    	//Ö»ÐèÒªÖªµÀÖÖÀàÊýÁ¿£¬²¢²»ÐèÒªÖªµÀÃ¿¸öÖÖÀàÓÐ¶àÉÙ¸ö¡£ËùÒÔÓÃset¶ø²»ÊÇmap
+    	//Ö»ï¿½ï¿½ÒªÖªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÖªï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½setï¿½ï¿½ï¿½ï¿½ï¿½ï¿½map
         Map<Integer, Integer> nums = new HashMap<Integer,Integer>();
     	for (int i = 0; i < candies.length; i++) {
 			nums.put(candies[i], nums.getOrDefault(candies[i], 0)+1);
@@ -300,13 +297,13 @@ public class Solution {
     }
 
     public boolean isToeplitzMatrix(int[][] matrix) {
-    	//µ±ÇÒ½öµ±r1 - c1 == r2 - c2£¬Îª¶Ô½ÇÏß
+    	//ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½r1 - c1 == r2 - c2ï¿½ï¿½Îªï¿½Ô½ï¿½ï¿½ï¿½
     	int heigh = matrix.length;
     	int width = matrix[0].length;
     	for(int k = 0; k < width; k++) {
-    		int i = 0;		//µÚÒ»ÐÐ²é¶Ô½ÇÏß
+    		int i = 0;		//ï¿½ï¿½Ò»ï¿½Ð²ï¿½Ô½ï¿½ï¿½ï¿½
     		int j = k;
-    		int number = matrix[i][j]; 		//ÆðÊ¼Öµ
+    		int number = matrix[i][j]; 		//ï¿½ï¿½Ê¼Öµ
     		i++;
     		j++;
     		while(i < heigh && j < width) {
@@ -319,8 +316,8 @@ public class Solution {
     	}
     	for(int k = 0; k < heigh; k++) {
     		int i = k;		
-    		int j = 0;	//µÚÒ»ÁÐ²é¶Ô½ÇÏß
-    		int number = matrix[i][j]; 		//ÆðÊ¼Öµ
+    		int j = 0;	//ï¿½ï¿½Ò»ï¿½Ð²ï¿½Ô½ï¿½ï¿½ï¿½
+    		int number = matrix[i][j]; 		//ï¿½ï¿½Ê¼Öµ
     		i++;
     		j++;
     		while(i < heigh && j < width) {
@@ -366,7 +363,7 @@ public class Solution {
     	{
     		queue.add(root);
     		while (!queue.isEmpty()) {
-				int num = queue.size();		//ÕâÒ»²ãÓÐ¶àÉÙÊý¾Ý
+				int num = queue.size();		//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				int i = num;
 				double total = 0;
 				while(i!=0) {
