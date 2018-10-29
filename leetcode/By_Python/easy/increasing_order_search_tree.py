@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2018-10-29 14:50:37
-# @Last Modified time: 2018-10-29 15:12:41
+# @Last Modified time: 2018-10-29 18:33:50
 
 
 class TreeNode(object):
@@ -32,10 +32,7 @@ class Solution(object):
                 top = top.left
 
             top = stack.pop()
-            if res is None:
-                res = top
-            else:
-                res.letf = top
-                res = top
+            cur.right = TreeNode(top.val)
+            cur = cur.right
             top = top.right
-        return res_top
+        return ans.right
