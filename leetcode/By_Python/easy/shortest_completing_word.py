@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2018-11-04 13:36:39
-# @Last Modified time: 2018-11-04 14:04:46
+# @Last Modified time: 2018-11-04 14:57:13
 
 
 class Solution:
@@ -30,10 +30,8 @@ class Solution:
         res = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
         chars = self.count(licensePlate)
-        print(chars)
         for word in words:
             tmp = self.count(word)
-            print(tmp)
             if self.cmp(chars, tmp):
                 if len(word) < len(res):
                     res = word
