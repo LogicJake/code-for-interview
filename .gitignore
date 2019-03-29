@@ -114,3 +114,5 @@ Main.java
 \.tags_sorted_by_file
 
 \.idea/
+
+\.vscode/settings\.json
