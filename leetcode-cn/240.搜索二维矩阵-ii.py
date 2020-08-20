@@ -8,26 +8,26 @@
 # @lc code=start
 class Solution:
     def helper(self, matrix, start, target, flag):
-        l = start
+        left = start
         # 横向
         if flag:
             r = len(matrix[0]) - 1
         else:
             r = len(matrix) - 1
 
-        while l <= r:
-            mid = (l + r) // 2
+        while left <= r:
+            mid = (left + r) // 2
 
             if flag:
                 if matrix[start][mid] < target:
-                    l = mid + 1
+                    left = mid + 1
                 elif matrix[start][mid] > target:
                     r = mid - 1
                 else:
                     return True
             else:
                 if matrix[mid][start] < target:
-                    l = mid + 1
+                    left = mid + 1
                 elif matrix[mid][start] > target:
                     r = mid - 1
                 else:
