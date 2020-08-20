@@ -7,8 +7,6 @@
 # @lc code=start
 from typing import List
 
-from collections import defaultdict
-
 # class Solution:
 #     def singleNumber(self, nums: List[int]) -> List[int]:
 #         count = defaultdict(int)
