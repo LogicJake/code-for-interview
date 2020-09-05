@@ -12,13 +12,12 @@ class Solution:
         n_list = list(range(1, n + 1))
         res = ''
 
-        def helper(n, k, res):
-            if n == 1:
-                return res + str(n_list[0])
+        k = k - 1
 
+        for i in range(n, 0, -1):
             group_size = 1
-            for i in range(n - 1, 0, -1):
-                group_size = group_size * i
+            for j in range(i - 1, 0, -1):
+                group_size = group_size * j
 
             group_n = k // group_size
 
@@ -26,9 +25,9 @@ class Solution:
             res += str(number)
             n_list.remove(number)
 
-            return helper(n - 1, k % group_size, res)
+            k = k % group_size
 
-        return helper(n, k - 1, res)
+        return res
 
 
 # @lc code=end
