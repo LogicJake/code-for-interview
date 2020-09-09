@@ -5,7 +5,6 @@
 #
 
 # @lc code=start
-import enum
 from typing import List
 
 # class Solution:
