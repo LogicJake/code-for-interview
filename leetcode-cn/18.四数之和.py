@@ -53,35 +53,42 @@ class Solution:
 
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
-        result = []
+        ans = []
+        path = []
+        n = len(nums)
 
         nums.sort()
-        length = len(nums)
-        for first in range(0, length - 3):
-            if first > 0 and nums[first] == nums[first - 1]:
-                continue
 
-            for second in range(first + 1, length - 2):
-                if second > first + 1 and nums[second] == nums[second - 1]:
+        def help(start, target):
+            if target == 0 and len(path) == 4:
+                ans.append(path[:])
+                return
+
+            for i in range(start, n):
+                '''
+                这一步为什么不能是nums[i] == nums[i + 1]（1）
+                如果出现连续的两个值都要入path，那么按照（1）所描述，会直接进入第一次dfs选择第二个值；
+                然后下一次dfs就不能选择前一个值。
+                '''
+                if i - 1 >= start and nums[i] == nums[i - 1]:
                     continue
 
-                forth = length - 1
-                for third in range(second + 1, length - 1):
-                    if third > second + 1 and nums[third] == nums[third - 1]:
-                        continue
+                # 剪枝
+                if i + 1 < n and nums[i] + nums[i + 1] * (3 -
+                                                          len(path)) > target:
+                    break
 
-                    while third < forth and nums[first] + nums[second] + nums[
-                            third] + nums[forth] > target:
-                        forth -= 1
+                if i + 1 < n and nums[i] + nums[n - 1] * (3 -
+                                                          len(path)) < target:
+                    continue
 
-                    if third == forth:
-                        break
-                    if nums[first] + nums[second] + nums[third] + nums[
-                            forth] == target:
-                        result.append([
-                            nums[first], nums[second], nums[third], nums[forth]
-                        ])
-        return result
+                path.append(nums[i])
+                help(i + 1, target - nums[i])
+                path.pop()
+
+        help(0, target)
+
+        return ans
 
 
 # @lc code=end
