@@ -18,23 +18,27 @@ class TreeNode:
 
 class Solution:
     def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
-        path = []
         ans = []
+        path = []
 
-        def help(root, num):
-            if not root:
+        def help(root, target):
+            if root is None:
                 return
+
+            nonlocal ans
+
+            tmp = target - root.val
             path.append(root.val)
 
-            if num - root.val == 0 and root.right is None and root.left is None:
+            if tmp == 0 and root.left is None and root.right is None:
                 ans.append(path[:])
 
-            help(root.left, num - root.val)
-            help(root.right, num - root.val)
-
+            help(root.left, tmp)
+            help(root.right, tmp)
             path.pop()
 
         help(root, sum)
+
         return ans
 
 
