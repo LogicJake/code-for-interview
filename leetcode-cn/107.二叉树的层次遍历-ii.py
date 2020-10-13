@@ -21,32 +21,26 @@ class Solution:
         if root is None:
             return []
 
-        level = {}
-        max_ll = 0
-
-        queue = [[root, 0]]
+        queue = [root]
+        ans = []
         while len(queue) != 0:
-            node, ll = queue.pop(0)
+            sz = len(queue)
 
-            if ll > max_ll:
-                max_ll = ll
+            nums = []
+            for _ in range(sz):
+                node = queue.pop(0)
+                nums.append(node.val)
 
-            if ll not in level:
-                level[ll] = [node.val]
-            else:
-                level[ll].append(node.val)
+                if node.left is not None:
+                    queue.append(node.left)
 
-            if node.left is not None:
-                queue.append([node.left, ll + 1])
+                if node.right is not None:
+                    queue.append(node.right)
 
-            if node.right is not None:
-                queue.append([node.right, ll + 1])
+            ans.append(nums)
 
-        result = []
-        for i in range(max_ll, -1, -1):
-            result.append(level[i])
-
-        return result
+        ans = ans[::-1]
+        return ans
 
 
 # @lc code=end
