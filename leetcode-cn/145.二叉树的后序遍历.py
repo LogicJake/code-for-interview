@@ -17,39 +17,27 @@ class TreeNode:
 
 
 class Solution:
-    # def postorderTraversal(self, root: TreeNode) -> List[int]:
-    #     path = []
-
-    #     def help(root):
-    #         if not root:
-    #             return
-
-    #         help(root.left)
-    #         help(root.right)
-    #         path.append(root.val)
-
-    #     help(root)
-    #     return path
-
     def postorderTraversal(self, root: TreeNode) -> List[int]:
-        path = []
+        ans = []
         stack = []
-        prev = None
-        while stack or root:
+
+        pre = None
+
+        while len(stack) != 0 or root is not None:
             while root:
                 stack.append(root)
                 root = root.left
-            root = stack.pop()
 
-            if not root.right or root.right == prev:
-                path.append(root.val)
-                prev = root
+            root = stack.pop()
+            if root.right is None or pre == root.right:
+                ans.append(root.val)
+                pre = root
                 root = None
             else:
                 stack.append(root)
                 root = root.right
 
-        return path
+        return ans
 
 
 # @lc code=end

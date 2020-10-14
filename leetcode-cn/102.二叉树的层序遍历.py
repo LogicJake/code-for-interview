@@ -23,9 +23,9 @@ class Solution:
 
         queue = [root]
         ans = []
-        while queue:
+
+        while len(queue) != 0:
             sz = len(queue)
-            print(sz)
 
             nums = []
             for _ in range(sz):
@@ -34,6 +34,7 @@ class Solution:
 
                 if node.left is not None:
                     queue.append(node.left)
+
                 if node.right is not None:
                     queue.append(node.right)
 

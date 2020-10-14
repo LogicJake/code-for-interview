@@ -18,18 +18,20 @@ class TreeNode:
 
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
-        result = []
+        ans = []
+        stack = []
 
-        def help(root):
-            if not root:
-                return
+        while len(stack) != 0 or root is not None:
+            while root:
+                stack.append(root)
+                root = root.left
 
-            help(root.left)
-            result.append(root.val)
-            help(root.right)
+            root = stack.pop()
+            ans.append(root.val)
 
-        help(root)
-        return result
+            root = root.right
+
+        return ans
 
 
 # @lc code=end
