@@ -18,22 +18,25 @@ class TreeNode:
 
 class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+        val_index = {}
+        for i, val in enumerate(inorder):
+            val_index[val] = i
+
         def help(left, right):
-            nonlocal map_dict
             if left > right:
                 return None
 
-            val = postorder.pop()
-            node = TreeNode(val)
-            index = map_dict[val]
+            root_val = postorder.pop()
+            root = TreeNode(root_val)
 
-            node.right = help(index + 1, right)
-            node.left = help(left, index - 1)
-            return node
+            index = val_index[root_val]
 
-        map_dict = {val: index for index, val in enumerate(inorder)}
-        root = help(0, len(inorder) - 1)
-        return root
+            root.right = help(index + 1, right)
+            root.left = help(left, index - 1)
+
+            return root
+
+        return help(0, len(inorder) - 1)
 
 
 # @lc code=end
