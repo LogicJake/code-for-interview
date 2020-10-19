@@ -4,9 +4,10 @@
 # [24] 两两交换链表中的节点
 #
 
-
 # @lc code=start
 # Definition for singly-linked list.
+
+
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -18,29 +19,28 @@ class Solution:
         if head is None:
             return None
 
-        ans = ListNode(-1)
-        ans.next = head
-        p = ans
+        new_head = ListNode(0)
+        new_head.next = head
+
+        pre = new_head
+        p = pre.next
         q = p.next
-        r = q.next
 
-        while p and q and r:
-            p.next = r
-            q.next = r.next
-            r.next = q
+        while p is not None and q is not None:
+            next = q.next
 
-            p = q
-            if p:
+            pre.next = q
+            q.next = p
+            p.next = next
+
+            pre = p
+            p = next
+            if p is not None:
                 q = p.next
             else:
                 q = None
 
-            if q:
-                r = q.next
-            else:
-                r = None
-
-        return ans.next
+        return new_head.next
 
 
 # @lc code=end
