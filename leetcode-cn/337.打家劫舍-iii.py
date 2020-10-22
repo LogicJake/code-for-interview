@@ -15,40 +15,21 @@ class TreeNode:
         self.right = None
 
 
-# from collections import defaultdict
-
-# class Solution:
-#     def rob(self, root: TreeNode) -> int:
-#         s = defaultdict(int)
-#         n = defaultdict(int)
-#         def dfs(root):
-#             if not root:
-#                 return 0
-#             dfs(root.left)
-#             dfs(root.right)
-#             s[root] = root.val + n[root.left] + n[root.right]
-#             n[root] = max(n[root.left], s[root.left]) + max(
-#                 n[root.right], s[root.right])
-#         dfs(root)
-#         return max(s[root], n[root])
-
-
 class Solution:
     def rob(self, root: TreeNode) -> int:
-        def dfs(root):
+        def help(root):
             if not root:
-                return [0, 0]
+                return 0, 0
 
-            ls, ln = dfs(root.left)
-            rs, rn = dfs(root.right)
+            ry, rn = help(root.right)
+            ly, ln = help(root.left)
 
-            s = root.val + ln + rn
-            n = max(ls, ln) + max(rs, rn)
+            y = root.val + rn + ln
+            n = max(ry, rn) + max(ly, ln)
 
-            return s, n
+            return y, n
 
-        s, n = dfs(root)
-        return max(s, n)
+        return max(help(root))
 
 
 # @lc code=end
