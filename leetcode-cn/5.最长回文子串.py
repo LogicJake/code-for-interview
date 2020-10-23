@@ -8,27 +8,26 @@
 # @lc code=start
 class Solution:
     def longestPalindrome(self, s: str) -> str:
+        def expand(s, left, right):
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                left -= 1
+                right += 1
+
+            return left + 1, right - 1
+
         n = len(s)
-        dp = [[False] * n for _ in range(n)]
+        left, right = 0, 0
+        for i in range(n):
+            left1, right1 = expand(s, i, i)
+            left2, right2 = expand(s, i, i + 1)
 
-        res = ''
-        for ll in range(n):
-            for i in range(n):
-                j = i + ll
-                if j >= n:
-                    break
+            if right1 - left1 > right - left:
+                right, left = right1, left1
 
-                if ll == 0:
-                    dp[i][j] = True
-                elif ll == 1:
-                    dp[i][j] = (s[i] == s[j])
-                else:
-                    dp[i][j] = (dp[i + 1][j - 1] and s[i] == s[j])
+            if right2 - left2 > right - left:
+                right, left = right2, left2
 
-                if dp[i][j] and ll + 1 > len(res):
-                    res = s[i:j + 1]
-
-        return res
+        return s[left:right + 1]
 
 
 # @lc code=end
