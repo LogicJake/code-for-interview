@@ -9,7 +9,7 @@
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        result = 0
+        ans = 0
 
         right = -1
         visited = set()
@@ -21,9 +21,9 @@ class Solution:
                 right += 1
                 visited.add(s[right])
 
-            result = max(result, right - left + 1)
+            ans = max(ans, right - left + 1)
 
-        return result
+        return ans
 
 
 # @lc code=end
