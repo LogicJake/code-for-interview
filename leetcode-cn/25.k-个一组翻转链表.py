@@ -18,8 +18,7 @@ class Solution:
         def swap(head, tail):
             p = head
             pre = tail.next
-            nexx = tail.next
-            while p != nexx:
+            while pre != tail:
                 next = p.next
                 p.next = pre
                 pre = p
