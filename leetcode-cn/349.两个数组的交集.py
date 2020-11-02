@@ -10,14 +10,14 @@ from typing import List
 
 class Solution:
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        ht = set()
+        t = set()
 
         for num in nums1:
-            ht.add(num)
+            t.add(num)
 
         ans = set()
         for num in nums2:
-            if num in ht:
+            if num in t:
                 ans.add(num)
 
         return list(ans)
