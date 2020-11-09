@@ -1,7 +1,7 @@
 #
-# @lc app=leetcode.cn id=122 lang=python3
+# @lc app=leetcode.cn id=121 lang=python3
 #
-# [122] 买卖股票的最佳时机 II
+# [121] 买卖股票的最佳时机
 #
 
 # @lc code=start
@@ -11,6 +11,8 @@ from typing import List
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         n = len(prices)
+        if n == 0:
+            return 0
         dp = [[0, 0] for _ in range(n)]
 
         for i in range(n):
@@ -20,7 +22,7 @@ class Solution:
             else:
                 dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i])
 
-                dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] - prices[i])
+                dp[i][1] = max(dp[i - 1][1], -prices[i])
 
         return dp[-1][0]
 
