@@ -15,7 +15,23 @@ class ListNode:
 
 class Solution:
     def oddEvenList(self, head: ListNode) -> ListNode:
-        pass
+        if not head:
+            return head
+
+        even_head = head.next
+
+        odd = head
+        even = even_head
+
+        while even and even.next:
+            odd.next = even.next
+            odd = odd.next
+
+            even.next = odd.next
+            even = odd.next
+
+        odd.next = even_head
+        return head
 
 
 # @lc code=end
