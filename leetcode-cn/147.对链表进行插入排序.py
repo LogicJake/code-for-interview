@@ -15,7 +15,21 @@ class ListNode:
 
 class Solution:
     def insertionSortList(self, head: ListNode) -> ListNode:
-        pass
+        new_head = ListNode(0)
+
+        p = head
+        while p:
+            next = p.next
+
+            q = new_head
+            while q.next and q.next.val < p.val:
+                q = q.next
+            p.next = q.next
+            q.next = p
+
+            p = next
+
+        return new_head.next
 
 
 # @lc code=end
