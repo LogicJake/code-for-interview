@@ -33,6 +33,7 @@ class Solution:
         right = self.sortList(mid)
 
         new_head = ListNode(0)
+
         p = new_head
         while left is not None and right is not None:
             if left.val < right.val:
