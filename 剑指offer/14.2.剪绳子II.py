@@ -6,4 +6,4 @@ class Solution:
             for j in range(1, i):
                 dp[i] = max(dp[i], j * (i - j), j * dp[i - j])
 
-        return dp[-1]
+        return dp[-1] % 1000000007
