@@ -8,17 +8,17 @@
 # @lc code=start
 class Solution:
     def countPrimes(self, n: int) -> int:
-        def is_prime(x):
-            i = 2
-            while i * i <= x:
-                if x % i == 0:
-                    return 0
-                i += 1
-            return 1
-
+        prime = [1] * n
         ans = 0
+
         for i in range(2, n):
-            ans += is_prime(i)
+            if prime[i] == 1:
+                ans += 1
+
+                s = i * i
+                while s < n:
+                    prime[s] = 0
+                    s += i
         return ans
 
 
