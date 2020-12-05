@@ -12,19 +12,30 @@ from collections import defaultdict
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         cnt = defaultdict(int)
-
         for task in tasks:
             cnt[task] += 1
 
-        max_task_num = max(cnt.values())
+        cnt = list(cnt.values())
+        next_times = [1] * len(cnt)
 
-        res = (max_task_num - 1) * (n + 1)
+        time = 0
+        for task in tasks:
+            time += 1
 
-        for _ in cnt.values():
-            if _ == max_task_num:
-                res += 1
+            min_val_time = min(
+                [next_times[i] for i in range(len(cnt)) if cnt[i] > 0])
+            time = max(time, min_val_time)
 
-        return max(res, len(tasks))
+            best = -1
+            for i in range(len(cnt)):
+                if cnt[i] > 0 and next_times[i] <= time:
+                    if best == -1 or cnt[i] > cnt[best]:
+                        best = i
+
+            cnt[best] -= 1
+            next_times[best] = time + n + 1
+
+        return time
 
 
 # @lc code=end
