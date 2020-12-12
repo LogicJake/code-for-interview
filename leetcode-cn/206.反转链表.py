@@ -15,15 +15,16 @@ class ListNode:
 
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
-        pre = None
+        new_head = ListNode(0)
+
         p = head
-        while p is not None:
+        while p:
             next = p.next
-            p.next = pre
-            pre = p
+            p.next = new_head.next
+            new_head.next = p
             p = next
 
-        return pre
+        return new_head.next
 
 
 # @lc code=end
