@@ -11,13 +11,13 @@ from collections import defaultdict
 
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        ans_dict = defaultdict(list)
+        mem = defaultdict(list)
 
         for s in strs:
-            tmp = ''.join(sorted(s))
-            ans_dict[tmp].append(s)
+            key = ''.join(sorted(s))
+            mem[key].append(s)
 
-        return list(ans_dict.values())
+        return list(mem.values())
 
 
 # @lc code=end
