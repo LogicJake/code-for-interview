@@ -10,7 +10,8 @@
 class Solution:
     def calculate(self, s: str) -> int:
         def help(stack):
-            if len(stack) != 0:
+            # stack[-1] != ') 考虑到有空括号
+            if len(stack) != 0 and stack[-1] != ')':
                 res = stack.pop()
             else:
                 res = 0
