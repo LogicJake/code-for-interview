@@ -9,52 +9,40 @@
 
 class Solution:
     def calculate(self, s: str) -> int:
-        def help(stack):
-            # stack[-1] != ') 考虑到有空括号
-            if len(stack) != 0 and stack[-1] != ')':
-                res = stack.pop()
-            else:
-                res = 0
-
-            while stack and stack[-1] != ')':
-                op = stack.pop()
-                if op == '+':
-                    res += stack.pop()
-                else:
-                    res -= stack.pop()
-
-            return res
-
-        s = list(s)
-        s = s[::-1]
-
-        n = 0
         v = 0
+        sign = 1
+        res = 0
         stack = []
         for c in s:
             if c.isdigit():
-                v += int(c) * 10**n
-                n += 1
-            else:
-                if n > 0:
-                    stack.append(v)
-                    v = 0
-                    n = 0
+                v = v * 10 + int(c)
 
-                if c == ' ':
-                    continue
+            if c == '+':
+                res += sign * v
+                v = 0
+                sign = 1
 
-                if c != '(':
-                    stack.append(c)
-                else:
-                    res = help(stack)
-                    stack.pop()
-                    stack.append(res)
+            if c == '-':
+                res += sign * v
+                v = 0
+                sign = -1
 
-        if n > 0:
-            stack.append(v)
+            if c == '(':
+                stack.append(res)
+                stack.append(sign)
 
-        return help(stack)
+                v = 0
+                sign = 1
+                res = 0
+
+            if c == ')':
+                res += sign * v
+                res *= stack.pop()
+                res += stack.pop()
+
+                v = 0
+
+        return res + sign * v
 
 
 # @lc code=end
