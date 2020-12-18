@@ -4,22 +4,19 @@
 # [389] 找不同
 #
 
+
 # @lc code=start
-from collections import defaultdict
-
-
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
-        cnt = defaultdict(int)
+        ans = 0
 
         for c in s:
-            cnt[c] += 1
+            ans = ans ^ ord(c)
 
         for c in t:
-            cnt[c] -= 1
+            ans = ans ^ ord(c)
 
-            if cnt[c] < 0:
-                return c
+        return chr(ans)
 
 
 # @lc code=end
