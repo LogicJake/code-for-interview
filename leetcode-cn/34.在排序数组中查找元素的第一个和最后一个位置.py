@@ -15,43 +15,48 @@ class Solution:
             return [-1, -1]
 
         def binaryfrist(nums, target):
-            n = len(nums)
-
             left = 0
-            right = n - 1
-            while left < right:
-                mid = (left + right) // 2
-                if nums[mid] < target:  # 此时第一个相似的一定在mid右边
-                    left = mid + 1
-                else:
-                    right = mid
+            right = len(nums) - 1
 
-            return -1 if nums[left] != target else left
+            while left <= right:
+                mid = left + (right - left) // 2
+                if nums[mid] == target:
+                    right = mid - 1
+                elif nums[mid] < target:
+                    left = mid + 1
+
+                elif nums[mid] > target:
+                    right = mid - 1
+
+            if left == len(nums) or nums[left] != target:
+                return -1
+            else:
+                return left
 
         def binarylast(nums, target):
-            n = len(nums)
-
             left = 0
-            right = n - 1
-            while left < right:
-                # 一定要想上取整，否则会死循环，如果right=left+1，不向上取整，mid=left且nums[mid]==target，left=mid，死循环了
-                mid = (left + right + 1) // 2
-                if nums[mid] > target:  # 此时最后一个相似的一定在mid左边
-                    right = mid - 1
-                else:
-                    left = mid
+            right = len(nums) - 1
 
-            return -1 if nums[left] != target else left
+            while left <= right:
+                mid = left + (right - left) // 2
+                if nums[mid] == target:
+                    left = mid + 1
+                elif nums[mid] < target:
+                    left = mid + 1
+                elif nums[mid] > target:
+                    right = mid - 1
+
+            if right < 0 or nums[right] != target:
+                return -1
+            else:
+                return right
 
         first = binaryfrist(nums, target)
         if first == -1:
             return [-1, -1]
 
         last = binarylast(nums, target)
-        if last == -1:
-            return [-1, -1]
-        else:
-            return [first, last]
+        return [first, last]
 
 
 # @lc code=end
