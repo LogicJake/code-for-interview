@@ -16,40 +16,39 @@ class Solution:
 
         def binaryfrist(nums, target):
             left = 0
-            right = len(nums) - 1
+            right = len(nums)
 
-            while left <= right:
+            while left < right:
                 mid = left + (right - left) // 2
                 if nums[mid] == target:
-                    right = mid - 1
-                elif nums[mid] < target:
-                    left = mid + 1
-
-                elif nums[mid] > target:
-                    right = mid - 1
-
-            if left == len(nums) or nums[left] != target:
-                return -1
-            else:
-                return left
-
-        def binarylast(nums, target):
-            left = 0
-            right = len(nums) - 1
-
-            while left <= right:
-                mid = left + (right - left) // 2
-                if nums[mid] == target:
-                    left = mid + 1
+                    right = mid
                 elif nums[mid] < target:
                     left = mid + 1
                 elif nums[mid] > target:
-                    right = mid - 1
+                    right = mid
 
-            if right < 0 or nums[right] != target:
+            if right == len(nums) or nums[right] != target:
                 return -1
             else:
                 return right
+
+        def binarylast(nums, target):
+            left = 0
+            right = len(nums)
+
+            while left < right:
+                mid = left + (right - left) // 2
+                if nums[mid] == target:
+                    left = mid + 1
+                elif nums[mid] < target:
+                    left = mid + 1
+                elif nums[mid] > target:
+                    right = mid
+
+            if left == 0 or nums[left - 1] != target:
+                return -1
+            else:
+                return left - 1
 
         first = binaryfrist(nums, target)
         if first == -1:
