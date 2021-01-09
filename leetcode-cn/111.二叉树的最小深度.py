@@ -16,20 +16,27 @@ class TreeNode:
 
 class Solution:
     def minDepth(self, root: TreeNode) -> int:
-        if root is None:
+        if not root:
             return 0
 
-        if root.left is None and root.right is None:
-            return 1
+        queue = [root]
+        depth = 1
 
-        left = 9999
-        right = 9999
-        if root.left is not None:
-            left = self.minDepth(root.left)
-        if root.right is not None:
-            right = self.minDepth(root.right)
+        while queue:
+            sz = len(queue)
 
-        return min(left, right) + 1
+            for _ in range(sz):
+                cur = queue.pop(0)
+                if not cur.left and not cur.right:
+                    return depth
+
+                if cur.left:
+                    queue.append(cur.left)
+
+                if cur.right:
+                    queue.append(cur.right)
+
+            depth += 1
 
 
 # @lc code=end

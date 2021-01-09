@@ -22,9 +22,9 @@ class Solution:
             for j in range(C):
                 bucket[dist(i, j, r0, c0)].append([i, j])
 
-        ret = list()
+        ret = []
         for i in range(maxDist + 1):
-            ret += (bucket[i])
+            ret += bucket[i]
 
         return ret
 

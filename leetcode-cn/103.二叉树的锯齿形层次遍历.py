@@ -18,31 +18,30 @@ class TreeNode:
 
 class Solution:
     def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
-        level = 0
-        ans = []
-        queue = []
-        if root is None:
+        if not root:
             return []
+        order = 1
         queue = [root]
-
-        while len(queue) != 0:
+        ans = []
+        while queue:
             sz = len(queue)
 
-            nums = []
+            tmp = []
             for _ in range(sz):
-                node = queue.pop(0)
-                nums.append(node.val)
+                cur = queue.pop(0)
+                tmp.append(cur.val)
 
-                if node.left is not None:
-                    queue.append(node.left)
-                if node.right is not None:
-                    queue.append(node.right)
+                if cur.left:
+                    queue.append(cur.left)
 
-            if level % 2 == 1:
-                nums = nums[::-1]
+                if cur.right:
+                    queue.append(cur.right)
+            if order % 2 == 0:
+                ans.append(tmp[::-1])
+            else:
+                ans.append(tmp)
+            order = order + 1
 
-            ans.append(nums)
-            level += 1
         return ans
 
 

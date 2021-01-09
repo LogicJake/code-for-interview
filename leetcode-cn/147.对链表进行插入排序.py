@@ -1,7 +1,7 @@
 #
-# @lc app=leetcode.cn id=206 lang=python3
+# @lc app=leetcode.cn id=147 lang=python3
 #
-# [206] 反转链表
+# [147] 对链表进行插入排序
 #
 
 
@@ -14,14 +14,19 @@ class ListNode:
 
 
 class Solution:
-    def reverseList(self, head: ListNode) -> ListNode:
+    def insertionSortList(self, head: ListNode) -> ListNode:
         new_head = ListNode(0)
 
         p = head
         while p:
             next = p.next
-            p.next = new_head.next
-            new_head.next = p
+
+            q = new_head
+            while q.next and q.next.val < p.val:
+                q = q.next
+            p.next = q.next
+            q.next = p
+
             p = next
 
         return new_head.next

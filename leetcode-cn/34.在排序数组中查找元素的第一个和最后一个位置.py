@@ -10,33 +10,52 @@ from typing import List
 
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        left = 0
-        right = len(nums) - 1
-        while left < right:
-            mid = (left + right) // 2
-            if nums[mid] >= target:
-                right = mid
-            else:
-                left = mid + 1
-        if nums[left] != target:
+        n = len(nums)
+        if n == 0:
             return [-1, -1]
-        else:
-            start = left
 
-        left = 0
-        right = len(nums) - 1
-        while left < right:
-            mid = (left + right + 1) >> 2
-            if nums[mid] <= target:
-                left = mid
+        def binaryfrist(nums, target):
+            left = 0
+            right = len(nums)
+
+            while left < right:
+                mid = left + (right - left) // 2
+                if nums[mid] == target:
+                    right = mid
+                elif nums[mid] < target:
+                    left = mid + 1
+                elif nums[mid] > target:
+                    right = mid
+
+            if right == len(nums) or nums[right] != target:
+                return -1
             else:
-                right = mid - 1
-        if nums[left] != target:
-            return [-1, -1]
-        else:
-            end = left
+                return right
 
-        return [start, end]
+        def binarylast(nums, target):
+            left = 0
+            right = len(nums)
+
+            while left < right:
+                mid = left + (right - left) // 2
+                if nums[mid] == target:
+                    left = mid + 1
+                elif nums[mid] < target:
+                    left = mid + 1
+                elif nums[mid] > target:
+                    right = mid
+
+            if left == 0 or nums[left - 1] != target:
+                return -1
+            else:
+                return left - 1
+
+        first = binaryfrist(nums, target)
+        if first == -1:
+            return [-1, -1]
+
+        last = binarylast(nums, target)
+        return [first, last]
 
 
 # @lc code=end

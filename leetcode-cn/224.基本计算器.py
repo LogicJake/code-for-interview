@@ -8,49 +8,41 @@
 
 
 class Solution:
-    def evaluate(self, stack):
-        if len(stack) != 0:
-            res = stack.pop()
-        else:
-            res = 0
-
-        while len(stack) != 0 and stack[-1] != ')':
-            op = stack.pop()
-            if op == '+':
-                res += stack.pop()
-            else:
-                res -= stack.pop()
-
-        return res
-
     def calculate(self, s: str) -> int:
-        stack = []
-        n = 0
         v = 0
+        sign = 1
+        res = 0
+        stack = []
+        for c in s:
+            if c.isdigit():
+                v = v * 10 + int(c)
 
-        for i in range(len(s) - 1, -1, -1):
-            ch = s[i]
+            if c == '+':
+                res += sign * v
+                v = 0
+                sign = 1
 
-            if ch.isdigit():
-                v += (10**n * int(ch))
-                n += 1
-            elif ch != ' ':
-                if n > 0:
-                    stack.append(v)
-                    n = 0
-                    v = 0
+            if c == '-':
+                res += sign * v
+                v = 0
+                sign = -1
 
-                if ch != '(':
-                    stack.append(ch)
-                else:
-                    res = self.evaluate(stack)
-                    stack.pop()
-                    stack.append(res)
+            if c == '(':
+                stack.append(res)
+                stack.append(sign)
 
-        if n > 0:
-            stack.append(v)
+                v = 0
+                sign = 1
+                res = 0
 
-        return self.evaluate(stack)
+            if c == ')':
+                res += sign * v
+                res *= stack.pop()
+                res += stack.pop()
+
+                v = 0
+
+        return res + sign * v
 
 
 # @lc code=end
