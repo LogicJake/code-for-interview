@@ -10,8 +10,10 @@ class Solution:
         for i in range(1, m):
             for j in range(1, n):
                 if p[j - 1] == '*':
-                    if dp[i][j - 2]: dp[i][j] = True  # 1.
-                    elif dp[i][j - 1]: dp[i][j] = True  # 2.
+                    if dp[i][j - 2]:
+                        dp[i][j] = True  # 1.
+                    elif dp[i][j - 1]:
+                        dp[i][j] = True  # 2.
                     elif dp[i - 1][j] and s[i - 1] == p[j - 2]:
                         dp[i][j] = True  # 3.
                     elif dp[i - 1][j] and p[j - 2] == '.':
