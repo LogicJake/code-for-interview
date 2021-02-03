@@ -8,20 +8,21 @@
 # @lc code=start
 class Solution:
     def removeOuterParentheses(self, S: str) -> str:
-        cnt = 0
-        left = 0
+        stack = []
 
-        ans = []
-        for i, c in enumerate(S):
+        ans = ''
+
+        for c in S:
             if c == '(':
-                cnt += 1
+                if stack:
+                    ans += c
+                stack.append(c)
             else:
-                cnt -= 1
+                stack.pop(-1)
+                if stack:
+                    ans += c
 
-            if cnt == 0:
-                ans.append(S[left + 1:i])
-                left = i + 1
-        return ''.join(ans)
+        return ans
 
 
 # @lc code=end
