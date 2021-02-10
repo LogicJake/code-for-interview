@@ -15,43 +15,42 @@ class ListNode:
 
 class Solution:
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
-        def swap(head, tail):
-            p = head
-            pre = tail.next
-            while pre != tail:
-                next = p.next
-                p.next = pre
-                pre = p
-                p = next
-
-            return tail, head
-
         new_head = ListNode(0)
         new_head.next = head
 
         pre = new_head
-        head = pre.next
-        tail = pre
+        tail = new_head
+
+        def swap(head, tail):
+            prev = None
+            p = head
+
+            while prev != tail:
+                nex = p.next
+                p.next = prev
+                prev = p
+                p = nex
+
+            return tail, head
 
         while True:
-            num = 0
-            while num < k and tail is not None:
+            cnt = 0
+
+            while cnt < k and tail is not None:
                 tail = tail.next
-                num += 1
+                cnt += 1
+
                 if tail is None:
                     return new_head.next
 
-            nex = tail.next
-
+            next = tail.next
             head, tail = swap(head, tail)
 
             pre.next = head
-            tail.next = nex
+            tail.next = next
 
             pre = tail
-            head = pre.next
-
-        return new_head.next
+            head = next
 
 
 # @lc code=end
