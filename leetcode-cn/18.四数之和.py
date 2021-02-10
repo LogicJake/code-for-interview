@@ -6,88 +6,52 @@
 
 # @lc code=start
 from typing import List
-'''
-class Solution:
-    def threeSum(self, nums, target):
-        result = []
-        length = len(nums)
-
-        for first in range(length):
-            if first > 0 and nums[first] == nums[first - 1]:
-                continue
-            new_target = target - nums[first]
-
-            third = length - 1
-            for second in range(first + 1, length):
-                if second > first + 1 and nums[second] == nums[second - 1]:
-                    continue
-                while second < third and nums[second] + nums[
-                        third] > new_target:
-                    third -= 1
-
-                if second == third:
-                    break
-
-                if nums[second] + nums[third] == new_target:
-                    result.append([nums[first], nums[second], nums[third]])
-
-        return result
-
-    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
-        result = []
-
-        nums.sort()
-        # 保证有三个数
-        for i in range(len(nums) - 3):
-            if i > 0 and nums[i] == nums[i - 1]:
-                continue
-
-            result_part = self.threeSum(nums[i + 1:], target - nums[i])
-
-            for r in result_part:
-                result.append([nums[i]] + r)
-
-        return result
-'''
 
 
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         ans = []
-        path = []
+        nums.sort()
         n = len(nums)
 
-        nums.sort()
+        for i in range(n - 3):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
 
-        def help(start, target):
-            if target == 0 and len(path) == 4:
-                ans.append(path[:])
-                return
+            if nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target:
+                break
+            if nums[i] + nums[n - 1] + nums[n - 2] + nums[n - 3] < target:
+                continue
 
-            for i in range(start, n):
-                '''
-                这一步为什么不能是nums[i] == nums[i + 1]（1）
-                如果出现连续的两个值都要入path，那么按照（1）所描述，会直接进入第一次dfs选择第二个值；
-                然后下一次dfs就不能选择前一个值。
-                '''
-                if i - 1 >= start and nums[i] == nums[i - 1]:
+            for j in range(i + 1, n - 2):
+                if j > i + 1 and nums[j] == nums[j - 1]:
                     continue
 
-                # 剪枝
-                if i + 1 < n and nums[i] + nums[i + 1] * (3 -
-                                                          len(path)) > target:
+                if nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target:
                     break
-
-                if i + 1 < n and nums[i] + nums[n - 1] * (3 -
-                                                          len(path)) < target:
+                if nums[i] + nums[j] + nums[n - 1] + nums[n - 2] < target:
                     continue
 
-                path.append(nums[i])
-                help(i + 1, target - nums[i])
-                path.pop()
+                left = j + 1
+                right = len(nums) - 1
+                tt = target - nums[i] - nums[j]
 
-        help(0, target)
+                while left < right:
+                    if nums[left] + nums[right] == tt:
+                        ans.append([nums[i], nums[j], nums[left], nums[right]])
 
+                        while left < right and nums[left] == nums[left + 1]:
+                            left += 1
+                        left += 1
+
+                        while left < right and nums[right] == nums[right - 1]:
+                            right -= 1
+                        right -= 1
+
+                    elif nums[left] + nums[right] < tt:
+                        left += 1
+                    elif nums[left] + nums[right] > tt:
+                        right -= 1
         return ans
 
 
