@@ -10,51 +10,50 @@ from typing import List
 
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        n = len(nums)
-        if n == 0:
-            return [-1, -1]
-
-        def binaryfrist(nums, target):
+        def first_loc(nums, target):
             left = 0
             right = len(nums)
 
             while left < right:
-                mid = left + (right - left) // 2
-                if nums[mid] == target:
-                    right = mid
-                elif nums[mid] < target:
+                mid = (left + right) // 2
+
+                if nums[mid] < target:
                     left = mid + 1
                 elif nums[mid] > target:
                     right = mid
+                else:
+                    right = mid
 
-            if right == len(nums) or nums[right] != target:
+            if left == len(nums) or nums[left] != target:
                 return -1
-            else:
-                return right
 
-        def binarylast(nums, target):
+            return left
+
+        def last_loc(nums, target):
             left = 0
             right = len(nums)
 
             while left < right:
-                mid = left + (right - left) // 2
-                if nums[mid] == target:
-                    left = mid + 1
-                elif nums[mid] < target:
+                mid = (left + right) // 2
+
+                if nums[mid] < target:
                     left = mid + 1
                 elif nums[mid] > target:
                     right = mid
+                else:
+                    left = mid + 1
 
             if left == 0 or nums[left - 1] != target:
                 return -1
-            else:
-                return left - 1
 
-        first = binaryfrist(nums, target)
+            return left - 1
+
+        first = first_loc(nums, target)
+
         if first == -1:
             return [-1, -1]
 
-        last = binarylast(nums, target)
+        last = last_loc(nums, target)
         return [first, last]
 
 

@@ -5,15 +5,16 @@ class Solution:
     def search(self, nums: List[int], target: int) -> int:
         def help(target):
             left = 0
-            right = len(nums) - 1
+            right = len(nums)
 
-            while left <= right:
+            while left < right:
                 mid = (left + right) // 2
-
-                if nums[mid] <= target:
+                if nums[mid] < target:
                     left = mid + 1
+                elif nums[mid] > target:
+                    right = mid
                 else:
-                    right = mid - 1
+                    left = mid + 1
 
             return left
 
