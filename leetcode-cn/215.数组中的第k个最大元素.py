@@ -9,75 +9,33 @@ from typing import List
 
 
 class Solution:
-    '''
-    def quickSort(self, nums, left, right):
-        if right - left <= 0:
-            return
-
-        tmp = nums[left]
-
-        i = left
-        j = right
-
-        while i < j:
-            while nums[j] > tmp and i < j:
-                j -= 1
-
-            while nums[i] <= tmp and i < j:
-                i += 1
-
-            if i < j:
-                nums[i], nums[j] = nums[j], nums[i]
-
-        nums[left], nums[i] = nums[i], nums[left]
-
-        self.quickSort(nums, left, i - 1)
-        self.quickSort(nums, i + 1, right)
-
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        # 快排
-        self.quickSort(nums, 0, len(nums) - 1)
-        return nums[len(nums) - k]
-    '''
-    def quickSearch(self, nums, left, right):
-        if self.find:
-            return
+        def quick_sort(nums, left, right, k):
+            if left >= right:
+                return nums[left]
 
-        if right - left <= 0:
-            self.k_max = nums[left]
-            self.find = True
+            privot = nums[left]
 
-        tmp = nums[left]
+            i = left
+            j = right
 
-        i = left
-        j = right
+            while i < j:
+                while i < j and nums[j] >= privot:
+                    j -= 1
+                nums[i] = nums[j]
 
-        while i < j:
-            while nums[j] > tmp and i < j:
-                j -= 1
+                while i < j and nums[i] <= privot:
+                    i += 1
+                nums[j] = nums[i]
 
-            while nums[i] <= tmp and i < j:
-                i += 1
+            if i == k:
+                return privot
+            elif k < i:
+                return quick_sort(nums, left, i - 1, k)
+            else:
+                return quick_sort(nums, i + 1, right, k)
 
-            if i < j:
-                nums[i], nums[j] = nums[j], nums[i]
-
-        nums[left], nums[i] = nums[i], nums[left]
-
-        if i == self.k:
-            self.k_max = nums[i]
-            self.find = True
-        elif i > self.k:
-            self.quickSearch(nums, left, i - 1)
-        else:
-            self.quickSearch(nums, i + 1, right)
-
-    def findKthLargest(self, nums: List[int], k: int) -> int:
-        self.find = False
-        self.k_max = None
-        self.k = len(nums) - k
-        self.quickSearch(nums, 0, len(nums) - 1)
-        return self.k_max
+        return quick_sort(nums, 0, len(nums) - 1, len(nums) - k)
 
 
 # @lc code=end
