@@ -18,39 +18,43 @@ class Solution:
         new_head = ListNode(0)
         new_head.next = head
 
-        pre = new_head
-        tail = new_head
-
         def swap(head, tail):
-            prev = None
+            pre = tail.next
             p = head
+            while pre != tail:
+                next = p.next
 
-            while prev != tail:
-                nex = p.next
-                p.next = prev
-                prev = p
-                p = nex
+                p.next = pre
+                pre = p
+
+                p = next
 
             return tail, head
 
-        while True:
-            cnt = 0
+        pre = new_head
+        tail = pre
 
-            while cnt < k and tail is not None:
-                tail = tail.next
-                cnt += 1
+        cnt = 0
+        while tail:
+            cnt += 1
+            tail = tail.next
 
-                if tail is None:
-                    return new_head.next
+            if not tail:
+                return new_head.next
 
-            next = tail.next
-            head, tail = swap(head, tail)
+            if cnt == k:
+                next = tail.next
+                head, tail = swap(head, tail)
 
-            pre.next = head
-            tail.next = next
+                pre.next = head
+                tail.next = next
 
-            pre = tail
-            head = next
+                pre = tail
+                head = next
+
+                cnt = 0
+
+        return new_head.next
 
 
 # @lc code=end
