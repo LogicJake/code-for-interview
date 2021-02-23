@@ -14,15 +14,17 @@ class Solution:
         ans = 0
 
         for i in range(len(height)):
-            while len(stack) != 0 and height[i] > height[stack[-1]]:
-                cur = stack.pop()
-                if len(stack) == 0:
-                    break
+            while stack and height[stack[-1]] < height[i]:
+                top = stack[-1]
+                stack.pop(-1)
 
-                j = stack[-1]
-                h = min(height[i], height[j]) - height[cur]
-                w = i - j - 1
-                ans += w * h
+                if not stack:
+                    continue
+
+                distance = i - stack[-1] - 1
+                h = min(height[i], height[stack[-1]]) - height[top]
+
+                ans += h * distance
 
             stack.append(i)
 
