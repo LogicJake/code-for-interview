@@ -13,11 +13,11 @@ class Solution:
         m = len(matrix)
         n = len(matrix[0])
 
-        ans = [[] for _ in range(n)]
+        ans = [[0] * m for _ in range(n)]
 
         for i in range(m):
             for j in range(n):
-                ans[j].append(matrix[i][j])
+                ans[j][i] = matrix[i][j]
 
         return ans
 
