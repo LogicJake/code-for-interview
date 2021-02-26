@@ -15,8 +15,7 @@ class Solution:
 
         for i, num in enumerate(nums):
             if target - num in mem:
-                return [mem[target - num], i]
-
+                return [i, mem[target - num]]
             else:
                 mem[num] = i
 

@@ -4,34 +4,37 @@
 # [142] 环形链表 II
 #
 
-
 # @lc code=start
 # Definition for singly-linked list.
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
 
 
 class Solution:
     def detectCycle(self, head: ListNode) -> ListNode:
-        if head is None:
+        if not head:
             return None
 
-        slow = head
         fast = head
+        slow = head
 
-        while slow is not None and fast is not None and fast.next is not None:
+        while slow and fast and fast.next:
             slow = slow.next
             fast = fast.next.next
 
-            if slow == fast:
-                ptr = head
+            if not slow or not fast:
+                return None
 
-                while ptr != slow:
-                    ptr = ptr.next
-                    slow = slow.next
-                return ptr
+            if slow == fast:
+                p = head
+
+                while p != fast:
+                    p = p.next
+                    fast = fast.next
+
+                return p
 
         return None
 
