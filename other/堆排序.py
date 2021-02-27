@@ -16,14 +16,15 @@ def build_heap(nums, i, max_len):
 
 
 def heap_sort(nums):
-    length = len(nums)
+    n = len(nums)
 
-    for i in range(length // 2 - 1, -1, -1):
-        build_heap(nums, i, length)
+    # 从最后一个非叶结点调整堆
+    for i in range(n // 2 - 1, -1, -1):
+        build_heap(nums, i, n)
 
-    for j in range(length - 1, 0, -1):
-        nums[j], nums[0] = nums[0], nums[j]
-        build_heap(nums, 0, j)
+    for i in range(n - 1, 0, -1):
+        nums[i], nums[0] = nums[0], nums[i]
+        build_heap(nums, 0, i)
 
 
 nums = [3, 12, 3, 4, 61, 12]
