@@ -27,19 +27,20 @@ class Solution:
         """
         Returns a random node's value.
         """
-        reserve = 0
-        count = 0
         head = self.head
-        while head is not None:
-            count += 1
+        ans = 0
+        cnt = 0
 
-            rand = random.randint(1, count)
-            if rand == count:
-                reserve = head.val
+        while head:
+            cnt += 1
+
+            index = random.randint(0, cnt - 1)
+            if index == 0:
+                ans = head.val
 
             head = head.next
 
-        return reserve
+        return ans
 
 
 # Your Solution object will be instantiated and called as such:
