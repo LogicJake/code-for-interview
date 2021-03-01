@@ -10,13 +10,14 @@ from typing import List
 
 class NumArray:
     def __init__(self, nums: List[int]):
-        sums = [0] * (len(nums) + 1)
+        dp = [0] * (len(nums) + 1)
         for i in range(len(nums)):
-            sums[i + 1] = sums[i] + nums[i]
-        self.sums = sums
+            dp[i] = dp[i - 1] + nums[i]
+        self.dp = dp
+        print(dp)
 
     def sumRange(self, i: int, j: int) -> int:
-        return self.sums[j + 1] - self.sums[i]
+        return self.dp[j] - self.dp[i - 1]
 
 
 # Your NumArray object will be instantiated and called as such:
