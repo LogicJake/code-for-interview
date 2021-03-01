@@ -13,18 +13,18 @@ class Solution:
         stack = []
         ans = 0
 
-        for i in range(len(height)):
-            while stack and height[stack[-1]] < height[i]:
-                top = stack[-1]
-                stack.pop(-1)
+        for i, h in enumerate(height):
+            while stack and height[stack[-1]] < h:
+                button_index = stack.pop(-1)
 
                 if not stack:
-                    continue
+                    break
 
-                distance = i - stack[-1] - 1
-                h = min(height[i], height[stack[-1]]) - height[top]
+                width = i - stack[-1] - 1
 
-                ans += h * distance
+                hh = min(h, height[stack[-1]]) - height[button_index]
+
+                ans += hh * width
 
             stack.append(i)
 
