@@ -15,29 +15,29 @@ class ListNode:
 
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        p1 = l1
-        p2 = l2
+        p = l1
+        q = l2
 
-        ans = ListNode()
-        q = ans
+        new_head = ListNode(0)
+        r = new_head
 
-        while p1 is not None and p2 is not None:
-            if p1.val <= p2.val:
-                q.next = p1
-                q = q.next
-                p1 = p1.next
+        while p and q:
+            if p.val < q.val:
+                r.next = p
+                r = r.next
+                p = p.next
+
             else:
-                q.next = p2
+                r.next = q
+                r = r.next
                 q = q.next
-                p2 = p2.next
 
-        if p1:
-            q.next = p1
+        if p:
+            r.next = p
+        if q:
+            r.next = q
 
-        if p2:
-            q.next = p2
-
-        return ans.next
+        return new_head.next
 
 
 # @lc code=end
