@@ -14,17 +14,14 @@ class Solution:
         ans = 0
 
         for i, h in enumerate(height):
-            while stack and height[stack[-1]] < h:
-                button_index = stack.pop(-1)
+            while stack and h > height[stack[-1]]:
+                index = stack.pop(-1)
 
                 if not stack:
                     break
 
-                width = i - stack[-1] - 1
-
-                hh = min(h, height[stack[-1]]) - height[button_index]
-
-                ans += hh * width
+                ans += (min(h, height[stack[-1]]) -
+                        height[index]) * (i - stack[-1] - 1)
 
             stack.append(i)
 
