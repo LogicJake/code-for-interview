@@ -18,30 +18,32 @@ class MyQueue:
         Push element x to the back of queue.
         """
         tmp_stack = []
-        while len(self.stack) != 0:
-            tmp_stack.insert(0, self.stack.pop(0))
-        self.stack.insert(0, x)
 
-        while len(tmp_stack) != 0:
-            self.stack.insert(0, tmp_stack.pop(0))
+        while self.stack:
+            tmp_stack.append(self.stack.pop(-1))
+
+        self.stack.append(x)
+
+        while tmp_stack:
+            self.stack.append(tmp_stack.pop(-1))
 
     def pop(self) -> int:
         """
         Removes the element from in front of queue and returns that element.
         """
-        return self.stack.pop(0)
+        return self.stack.pop(-1)
 
     def peek(self) -> int:
         """
         Get the front element.
         """
-        return self.stack[0]
+        return self.stack[-1]
 
     def empty(self) -> bool:
         """
         Returns whether the queue is empty.
         """
-        return True if len(self.stack) == 0 else False
+        return not self.stack
 
 
 # Your MyQueue object will be instantiated and called as such:
