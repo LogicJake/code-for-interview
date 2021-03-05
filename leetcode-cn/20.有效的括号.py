@@ -8,22 +8,31 @@
 # @lc code=start
 class Solution:
     def isValid(self, s: str) -> bool:
-        # if len(s) % 2 == 1:
-        #     return False
         stack = []
 
-        pairs = {')': '(', ']': '[', '}': '{'}
-
         for c in s:
-            if c not in pairs:
-                stack.append(c)
-            else:
-                if len(stack) == 0 or stack[-1] != pairs[c]:
-                    return False
+            if c == ')':
+                if stack and stack[-1] == '(':
+                    stack.pop(-1)
                 else:
-                    stack.pop()
+                    return False
+            elif c == ']':
+                if stack and stack[-1] == '[':
+                    stack.pop(-1)
+                else:
+                    return False
+            elif c == '}':
+                if stack and stack[-1] == '{':
+                    stack.pop(-1)
+                else:
+                    return False
+            else:
+                stack.append(c)
 
-        return not stack
+        if not stack:
+            return True
+        else:
+            return False
 
 
 # @lc code=end

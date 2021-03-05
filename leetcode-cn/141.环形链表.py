@@ -16,13 +16,14 @@ class ListNode:
 
 class Solution:
     def hasCycle(self, head: ListNode) -> bool:
-        if head is None or head.next is None:
+        if not head or not head.next:
             return False
-        slow = head
-        fast = slow.next
 
-        while fast != slow:
-            if slow is None or fast is None or fast.next is None:
+        slow = head
+        fast = head.next
+
+        while slow != fast:
+            if not slow or not fast or not fast.next:
                 return False
 
             slow = slow.next
