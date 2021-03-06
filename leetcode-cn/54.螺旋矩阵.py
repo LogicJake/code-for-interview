@@ -10,51 +10,32 @@ from typing import List
 
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        if len(matrix) == 0:
-            return []
-
-        direction = 0
-        ans = []
-
-        def next_pos(i, j, direction):
-            # 获取下一个位置
-            newi = i
-            newj = j
-            if direction == 0:
-                newi = i
-                newj = j + 1
-            elif direction == 1:
-                newi = i + 1
-                newj = j
-            elif direction == 2:
-                newi = i
-                newj = j - 1
-            elif direction == 3:
-                newi = i - 1
-                newj = j
-
-            return newi, newj
-
         m = len(matrix)
+        if m == 0:
+            return []
         n = len(matrix[0])
 
-        visited = set()
-        i = 0
-        j = 0
+        ans = []
+        top = 0
+        buttom = m - 1
+        left = 0
+        right = n - 1
+        while (left <= right and top <= buttom):
+            for i in range(left, right + 1):
+                ans.append(matrix[top][i])
+            for i in range(top + 1, buttom + 1):
+                ans.append(matrix[i][right])
 
-        while len(ans) != m * n:
-            ans.append(matrix[i][j])
-            visited.add((i, j))
+            if left < right and top < buttom:
+                for i in range(right - 1, left, -1):
+                    ans.append(matrix[buttom][i])
+                for i in range(buttom, top, -1):
+                    ans.append(matrix[i][left])
 
-            newi, newj = next_pos(i, j, direction)
-            if (newi, newj
-                ) in visited or newi < 0 or newi >= m or newj < 0 or newj >= n:
-                direction = (direction + 1) % 4
-                i, j = next_pos(i, j, direction)
-            else:
-                i = newi
-                j = newj
-
+            left += 1
+            right -= 1
+            top += 1
+            buttom -= 1
         return ans
 
 
