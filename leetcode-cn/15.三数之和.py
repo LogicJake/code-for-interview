@@ -11,27 +11,33 @@ from typing import List
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
-
+        n = len(nums)
         ans = []
 
-        for first in range(len(nums)):
+        for first in range(n - 2):
             if first > 0 and nums[first] == nums[first - 1]:
                 continue
 
-            third = len(nums) - 1
-            target = 0 - nums[first]
-            for second in range(first + 1, len(nums)):
-                if second > first + 1 and nums[second] == nums[second - 1]:
-                    continue
+            second = first + 1
+            third = n - 1
 
-                while third > second and nums[second] + nums[third] > target:
+            if nums[first] > 0:
+                continue
+
+            while second < third:
+                if nums[first] + nums[second] + nums[third] < 0:
+                    second += 1
+                elif nums[first] + nums[second] + nums[third] > 0:
                     third -= 1
-
-                if second == third:
-                    break
-
-                if nums[second] + nums[third] == target:
+                else:
                     ans.append([nums[first], nums[second], nums[third]])
+                    while second < third and nums[second] == nums[second + 1]:
+                        second += 1
+                    second += 1
+
+                    while second < third and nums[third] == nums[third - 1]:
+                        third -= 1
+                    third -= 1
 
         return ans
 
