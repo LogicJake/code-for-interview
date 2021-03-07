@@ -23,6 +23,7 @@ class Solution:
 
         queue = [root]
         ans = []
+
         while queue:
             tmp = []
             for _ in range(len(queue)):
