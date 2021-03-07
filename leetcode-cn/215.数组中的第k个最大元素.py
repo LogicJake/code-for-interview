@@ -10,15 +10,10 @@ from typing import List
 
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        def quick_sort(nums, left, right, k):
-            if left >= right:
-                return nums[left]
-
-            privot = nums[left]
-
+        def help(nums, target, left, right):
             i = left
             j = right
-
+            privot = nums[left]
             while i < j:
                 while i < j and nums[j] >= privot:
                     j -= 1
@@ -28,14 +23,15 @@ class Solution:
                     i += 1
                 nums[j] = nums[i]
 
-            if i == k:
+            if i == target:
                 return privot
-            elif k < i:
-                return quick_sort(nums, left, i - 1, k)
-            else:
-                return quick_sort(nums, i + 1, right, k)
+            elif i < target:
+                return help(nums, target, i + 1, right)
+            elif i > target:
+                return help(nums, target, left, i - 1)
 
-        return quick_sort(nums, 0, len(nums) - 1, len(nums) - k)
+        n = len(nums)
+        return help(nums, n - k, 0, len(nums) - 1)
 
 
 # @lc code=end
