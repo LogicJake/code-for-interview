@@ -23,13 +23,15 @@ class Solution:
 
         pre = None
 
-        while len(stack) != 0 or root is not None:
+        while stack or root:
             while root:
                 stack.append(root)
                 root = root.left
 
             root = stack.pop()
-            if root.right is None or pre == root.right:
+
+            # 没有右子树或者右子树已经被访问过
+            if not root.right or root.right == pre:
                 ans.append(root.val)
                 pre = root
                 root = None

@@ -26,13 +26,14 @@ class Solution:
         stack = []
         p = root
         while len(stack) != 0 or p is not None:
-            if p is not None:
+            if p:
                 ans.append(p.val)
                 stack.append(p)
                 p = p.left
             else:
                 p = stack.pop()
                 p = p.right
+
         return ans
 
 
