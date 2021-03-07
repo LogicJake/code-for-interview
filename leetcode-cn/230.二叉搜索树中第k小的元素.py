@@ -15,17 +15,22 @@ class TreeNode:
 
 
 class Solution:
-    def helper(self, root):
-        if root is None:
-            return []
-
-        left = self.helper(root.left)
-        right = self.helper(root.right)
-        return left + [root.val] + right
-
     def kthSmallest(self, root: TreeNode, k: int) -> int:
-        nums = self.helper(root)
-        return nums[k - 1]
+        ans = None
+
+        def help(root):
+            nonlocal ans, k
+            if not root or ans:
+                return
+
+            help(root.left)
+            k -= 1
+            if k == 0:
+                ans = root.val
+            help(root.right)
+
+        help(root)
+        return ans
 
 
 # @lc code=end
