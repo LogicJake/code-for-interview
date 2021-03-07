@@ -22,23 +22,21 @@ class Solution:
         path = []
 
         def help(root, target):
-            if root is None:
+            if not root:
                 return
-
-            nonlocal ans
 
             tmp = target - root.val
             path.append(root.val)
 
-            if tmp == 0 and root.left is None and root.right is None:
+            if tmp == 0 and not root.left and not root.right:
                 ans.append(path[:])
 
             help(root.left, tmp)
             help(root.right, tmp)
+
             path.pop()
 
         help(root, sum)
-
         return ans
 
 
