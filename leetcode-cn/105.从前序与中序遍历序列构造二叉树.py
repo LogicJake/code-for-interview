@@ -18,24 +18,13 @@ from typing import List
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
         mem = {}
+        for i, val in enumerate(inorder):
+            mem[val] = i
 
-        for index, num in enumerate(inorder):
-            mem[num] = index
+        def help():
+            pass
 
-        def help(left, right):
-            if left > right:
-                return None
-
-            root_value = preorder.pop(0)
-            root = TreeNode(root_value)
-
-            root_index = mem[root_value]
-            root.left = help(left, root_index - 1)
-            root.right = help(root_index + 1, right)
-
-            return root
-
-        return help(0, len(preorder) - 1)
+        return help()
 
 
 # @lc code=end
