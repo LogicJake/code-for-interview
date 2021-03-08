@@ -10,23 +10,23 @@ from typing import List
 
 class Solution:
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
-        candidates = list(range(1, 10))
+        nums = list(range(1, 10))
         path = []
         ans = []
 
-        def help(target, candidates):
+        def help(nums, target):
             if target == 0 and len(path) == k:
                 ans.append(path[:])
 
-            for i, num in enumerate(candidates):
+            for i, num in enumerate(nums):
                 if num > target:
                     break
 
                 path.append(num)
-                help(target - num, candidates[i + 1:])
+                help(nums[i + 1:], target - num)
                 path.pop()
 
-        help(n, candidates)
+        help(nums, n)
         return ans
 
 

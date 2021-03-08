@@ -5,16 +5,18 @@
 #
 
 # @lc code=start
-from typing import List
+from typing import ContextManager, List
 
 
 class Solution:
     def combinationSum2(self, candidates: List[int],
                         target: int) -> List[List[int]]:
-        path = []
         ans = []
+        path = []
 
-        def help(target, candidates):
+        candidates.sort()
+
+        def help(candidates, target):
             if target == 0:
                 ans.append(path[:])
 
@@ -23,13 +25,11 @@ class Solution:
                     continue
                 if num > target:
                     break
-
                 path.append(num)
-                help(target - num, candidates[i + 1:])
+                help(candidates[i + 1:], target - num)
                 path.pop()
 
-        candidates.sort()
-        help(target, candidates)
+        help(candidates, target)
         return ans
 
 

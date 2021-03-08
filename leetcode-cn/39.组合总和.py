@@ -11,22 +11,24 @@ from typing import List
 class Solution:
     def combinationSum(self, candidates: List[int],
                        target: int) -> List[List[int]]:
-        path = []
         ans = []
+        path = []
         candidates.sort()
 
-        def help(target, candidates):
-            if target == 0:
+        def help(candidates, t):
+            if t == 0:
                 ans.append(path[:])
+                return
 
             for i, num in enumerate(candidates):
-                if num > target:
+                if num > t:
                     break
                 path.append(num)
-                help(target - num, candidates[i:])
+                help(candidates[i:], t - num)
                 path.pop()
 
-        help(target, candidates)
+        help(candidates, target)
+
         return ans
 
 
