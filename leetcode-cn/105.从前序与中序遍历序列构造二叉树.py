@@ -17,14 +17,19 @@ from typing import List
 
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
-        mem = {}
-        for i, val in enumerate(inorder):
-            mem[val] = i
+        if not preorder:
+            return None
 
-        def help():
-            pass
+        root_val = preorder[0]
+        root_index = inorder.index(root_val)
+        root = TreeNode(root_val)
 
-        return help()
+        root.left = self.buildTree(preorder[1:root_index + 1],
+                                   inorder[:root_index])
+        root.right = self.buildTree(preorder[root_index + 1:],
+                                    inorder[root_index + 1:])
+
+        return root
 
 
 # @lc code=end
