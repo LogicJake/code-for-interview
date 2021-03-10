@@ -16,26 +16,29 @@ class ListNode:
 
 class Solution:
     def sortList(self, head: ListNode) -> ListNode:
-        if head is None or head.next is None:
+        if not head or not head.next:
             return head
 
-        slow = head
-        fast = head.next
+        slow = head.next
+        fast = head
 
-        while fast is not None and fast.next is not None:
+        while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
 
-        mid = slow.next
+        right = slow.next
+        left = head
         slow.next = None
 
-        left = self.sortList(head)
-        right = self.sortList(mid)
+        print(left, right)
+
+        left = self.sortList(left)
+        right = self.sortList(right)
 
         new_head = ListNode(0)
-
         p = new_head
-        while left is not None and right is not None:
+
+        while left and right:
             if left.val < right.val:
                 p.next = left
                 left = left.next
@@ -44,9 +47,11 @@ class Solution:
                 right = right.next
 
             p = p.next
-        if left is not None:
+
+        if left:
             p.next = left
-        else:
+
+        if right:
             p.next = right
 
         return new_head.next
