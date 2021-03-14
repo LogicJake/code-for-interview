@@ -8,41 +8,34 @@
 # @lc code=start
 class Solution:
     def myAtoi(self, str: str) -> int:
-        def is_num(c):
-            if '0' <= c and c <= '9':
-                return True
-            return False
-
+        res = 0
         i = 0
-        while i < len(str) and str[i] == ' ':
+        n = len(str)
+        flag = True
+
+        while i < n and str[i] == ' ':
             i += 1
 
-        str = str[i:]
-
-        if len(str) == 0 or (not is_num(str[0]) and str[0] != '-'
-                             and str[0] != '+'):
-            return 0
-
-        flag = 1
-        i = 0
-        if str[0] == '-' or str[0] == '+':
+        if i < n and str[i] == '-':
+            flag = False
+        if i < n and (str[i] == '+' or str[i] == '-'):
             i += 1
-            if str[0] == '-':
-                flag = -1
-        res = []
-        while i < len(str) and is_num(str[i]):
-            res.append(str[i])
-            i += 1
-        ans = 0
-        for i, c in enumerate(res[::-1]):
-            ans += int(c) * 10**(i)
-        ans = ans * flag
 
-        if ans < -2**31:
-            ans = -2**31
-        if ans > 2**31 - 1:
-            ans = 2**31 - 1
-        return ans
+        while i < n and str[i].isdigit():
+            num = int(str[i])
+            res = res * 10 + num
+
+            i += 1
+
+        if not flag:
+            res = -res
+
+        if res > 2**31 - 1:
+            res = 2**31 - 1
+        if res < -2**31:
+            res = -2**31
+
+        return res
 
 
 # @lc code=end
