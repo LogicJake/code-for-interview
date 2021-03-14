@@ -8,31 +8,22 @@ class Node:
 class Solution:
     def treeToDoublyList(self, root: 'Node') -> 'Node':
         def help(root):
-            nonlocal pre, head
+            nonlocal p
             if not root:
                 return
 
             help(root.left)
-
-            if pre:
-                pre.right = root
-                root.left = pre
-            else:
-                print(root.val)
-                head = root
-
-            pre = root
-
+            p.right = root
+            root.left = p
+            p = root
             help(root.right)
-
-        head = None
-        pre = None
 
         if not root:
             return None
+
+        new_head = Node(0)
+        p = new_head
         help(root)
-
-        head.left = pre
-        pre.right = head
-
-        return head
+        new_head.right.left = p
+        p.right = new_head.right
+        return new_head.right
