@@ -8,15 +8,19 @@ class TreeNode:
 
 class Solution:
     def kthLargest(self, root: TreeNode, k: int) -> int:
-        ans = []
+        ans = None
 
         def help(root):
-            if not root:
+            nonlocal k, ans
+            if ans or not root:
                 return
 
-            help(root.left)
-            ans.append(root.val)
             help(root.right)
+            if not ans and k == 1:
+                ans = root.val
+            else:
+                k -= 1
+            help(root.left)
 
         help(root)
-        return ans[-k]
+        return ans
