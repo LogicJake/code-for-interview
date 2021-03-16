@@ -4,18 +4,19 @@
 # [76] 最小覆盖子串
 #
 
-
 # @lc code=start
+
+
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         left = 0
         right = 0
-        valid = 0
+
+        ans = '0' * (len(s) + 1)
 
         cnt = {}
         window = {}
-        start = 0
-        length = float('inf')
+        num = 0
 
         for c in t:
             if c in cnt:
@@ -31,22 +32,21 @@ class Solution:
             if c in cnt:
                 window[c] += 1
                 if window[c] == cnt[c]:
-                    valid += 1
+                    num += 1
 
-            while valid == len(cnt):
-                if right - left < length:
-                    start = left
-                    length = right - left
+            while num == len(cnt):
+                if right - left < len(ans):
+                    ans = s[left:right]
 
                 c = s[left]
                 left += 1
 
                 if c in cnt:
                     if window[c] == cnt[c]:
-                        valid -= 1
+                        num -= 1
                     window[c] -= 1
 
-        return '' if length == float('inf') else s[start:start + length]
+        return '' if len(ans) == len(s) + 1 else ans
 
 
 # @lc code=end
