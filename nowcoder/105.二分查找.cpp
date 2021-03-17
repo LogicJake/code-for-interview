@@ -33,7 +33,7 @@ public:
                 i = mid + 1;
             }
         }
-        cout << "Value of str is : " << j << nums.size() << endl;
+
         if (nums[j] == target) {
             return j;
         } else {
