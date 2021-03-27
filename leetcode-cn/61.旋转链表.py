@@ -18,23 +18,23 @@ class Solution:
         if head is None:
             return None
 
-        old_tail = head
+        p = head
         n = 1
 
-        while old_tail.next is not None:
-            old_tail = old_tail.next
+        while p.next:
             n += 1
+            p = p.next
 
-        old_tail.next = head
+        p.next = head
 
-        n = (n - 1 - k) % n
+        k = k % n
+        k = n - k - 1
 
-        new_tail = head
-        for _ in range(n):
-            new_tail = new_tail.next
-
-        new_head = new_tail.next
-        new_tail.next = None
+        p = head
+        for _ in range(k):
+            p = p.next
+        new_head = p.next
+        p.next = None
         return new_head
 
 
