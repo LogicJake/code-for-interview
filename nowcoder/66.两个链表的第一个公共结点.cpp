@@ -17,13 +17,23 @@ public:
             return NULL;
         }
 
-        while (pHead1 != pHead2) {
-            pHead1 = pHead1->next;
-            pHead2 = pHead2->next;
+        ListNode* p = pHead1;
+        ListNode* q = pHead2;
 
-            if (pHead1 == NULL) {
-                /* code */
+        while (p != q) {
+            if (p == NULL) {
+                p = pHead2;
+            } else {
+                p = p->next;
+            }
+
+            if (q == NULL) {
+                q = pHead1;
+            } else {
+                q = q->next;
             }
         }
+
+        return p;
     }
 };
