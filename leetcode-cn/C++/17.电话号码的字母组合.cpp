@@ -29,6 +29,7 @@ public:
     {
         if (index == digits.size()) {
             ans.push_back(path);
+            return;
         }
 
         string chars = map[digits[index]];
