@@ -13,7 +13,7 @@ public:
     int firstSearch(vector<int>& nums, int target)
     {
         int left = 0;
-        int right = nums.size() - 1;
+        int right = nums.size();
 
         while (left < right) {
             int mid = (left + right) / 2;
@@ -37,7 +37,7 @@ public:
     int lastSearch(vector<int>& nums, int target)
     {
         int left = 0;
-        int right = nums.size() - 1;
+        int right = nums.size();
 
         while (left < right) {
             int mid = (left + right) / 2;
@@ -51,9 +51,7 @@ public:
             }
         }
 
-        if (nums[left] == target) {
-            return left;
-        } else if (left - 1 >= 0 && nums[left - 1] == target) {
+        if (left - 1 >= 0 && nums[left - 1] == target) {
             return left - 1;
         } else {
             return -1;
