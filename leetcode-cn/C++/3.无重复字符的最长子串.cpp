@@ -14,23 +14,25 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s)
     {
-        unordered_set<char> mem;
+        int ans = 0;
         int left = 0;
         int right = 0;
-        int ans = 0;
+        unordered_set<int> window;
 
         while (right < s.size()) {
             char c = s[right];
-            right++;
 
-            while (mem.count(c) != 0) {
-                mem.erase(s[left]);
-                left++;
+            right += 1;
+
+            while (window.count(c)) {
+                window.erase(s[left]);
+                left += 1;
             }
-            mem.insert(c);
 
+            window.insert(c);
             ans = max(ans, right - left);
         }
+
         return ans;
     }
 };
