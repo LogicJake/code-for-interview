@@ -14,21 +14,17 @@ class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums)
     {
-        int n = nums.size();
         vector<vector<int>> ans;
-
         sort(nums.begin(), nums.end());
-        for (int first = 0; first < (n - 2); first++) {
+        int n = nums.size();
+
+        for (int first = 0; first < n - 2; first++) {
             if (first > 0 && nums[first] == nums[first - 1]) {
                 continue;
             }
 
-            if (nums[first] > 0) {
-                break;
-            }
-
             int second = first + 1;
-            int third = nums.size() - 1;
+            int third = n - 1;
 
             while (second < third) {
                 if (second > first + 1 && nums[second] == nums[second - 1]) {
@@ -36,19 +32,17 @@ public:
                     continue;
                 }
 
-                if (nums[first] + nums[second] + nums[third] == 0) {
-                    ans.push_back({ nums[first], nums[second], nums[third] });
-                    second++;
-                    third--;
-
-                } else if (nums[first] + nums[second] + nums[third] < 0) {
+                if (nums[first] + nums[second] + nums[third] < 0) {
                     second++;
                 } else if (nums[first] + nums[second] + nums[third] > 0) {
+                    third--;
+                } else {
+                    ans.push_back({ nums[first], nums[second], nums[third] });
+                    second++;
                     third--;
                 }
             }
         }
-
         return ans;
     }
 };
