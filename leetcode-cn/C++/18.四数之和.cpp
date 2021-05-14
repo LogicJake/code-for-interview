@@ -15,56 +15,52 @@ class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target)
     {
+        int n = nums.size();
         vector<vector<int>> ans;
-        if (nums.size() < 4) {
-            return ans;
-        }
         sort(nums.begin(), nums.end());
-
-        for (int i = 0; i < nums.size() - 3; i++) {
-            if (i > 0 && nums[i] == nums[i - 1]) {
+        for (int first = 0; first < n - 3; first++) {
+            if (first > 0 && nums[first] == nums[first - 1]) {
                 continue;
             }
 
-            if (nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target) {
+            if (nums[first] + nums[first + 1] + nums[first + 2] + nums[first + 3] > target) {
                 break;
             }
-            if (nums[i] + nums[nums.size() - 3] + nums[nums.size() - 2] + nums[nums.size() - 1] < target) {
+
+            if (nums[first] + nums[n - 1] + nums[n - 2] + nums[n - 3] < target) {
                 continue;
             }
 
-            for (int j = i + 1; j < nums.size() - 2; j++) {
-                if (j > i + 1 && nums[j] == nums[j - 1]) {
+            for (int second = first + 1; second < n - 2; second++) {
+                if (second > first + 1 && nums[second] == nums[second - 1]) {
                     continue;
                 }
 
-                if (nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target) {
+                if (nums[first] + nums[second] + nums[second + 1] + nums[second + 2] > target) {
                     break;
                 }
 
-                if (nums[i] + nums[j] + nums[nums.size() - 2] + nums[nums.size() - 1] < target) {
+                if (nums[first] + nums[second] + nums[n - 1] + nums[n - 2] < target) {
                     continue;
                 }
 
-                int left = j + 1;
-                int right = nums.size() - 1;
+                int third = second + 1;
+                int forth = n - 1;
 
-                while (left < right) {
-                    if (left > j + 1 && nums[left] == nums[left - 1]) {
-                        left += 1;
+                while (third < forth) {
+                    if (third > second + 1 && nums[third] == nums[third - 1]) {
+                        third++;
                         continue;
                     }
 
-                    int sum = nums[i] + nums[j] + nums[left] + nums[right];
-
-                    if (sum < target) {
-                        left += 1;
-                    } else if (sum > target) {
-                        right -= 1;
+                    if (nums[first] + nums[second] + nums[third] + nums[forth] < target) {
+                        third++;
+                    } else if (nums[first] + nums[second] + nums[third] + nums[forth] > target) {
+                        forth--;
                     } else {
-                        ans.push_back({ nums[i], nums[j], nums[left], nums[right] });
-                        left += 1;
-                        right -= 1;
+                        ans.push_back({ nums[first], nums[second], nums[third], nums[forth] });
+                        third++;
+                        forth--;
                     }
                 }
             }
