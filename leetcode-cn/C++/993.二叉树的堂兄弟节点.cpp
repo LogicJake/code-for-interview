@@ -43,43 +43,32 @@ public:
     int x_depth;
     int y_depth;
 
-    void update(TreeNode* cur, TreeNode* parent, int depth)
+    void dfs(TreeNode* root, TreeNode* parent, int depth)
     {
-        if (cur->val == x) {
-            x_depth = depth;
-            x_found = true;
-            x_parent = parent;
+        if (!root) {
+            return;
         }
 
-        if (cur->val == y) {
-            y_depth = depth;
-            y_found = true;
-            y_parent = parent;
+        if (root->val == x) {
+            x_parent = parent;
+            x_depth = depth;
         }
+
+        if (root->val == y) {
+            y_parent = parent;
+            y_depth = depth;
+        }
+
+        dfs(root->right, root, depth + 1);
+        dfs(root->left, root, depth + 1);
     }
 
     bool isCousins(TreeNode* root, int x, int y)
     {
         this->x = x;
         this->y = y;
-        queue<pair<TreeNode*, int>> q;
-        q.push({ root, 0 });
-        update(root, nullptr, 0);
 
-        while (!q.empty()) {
-            auto [cur, depth] = q.front();
-            q.pop();
-
-            if (cur->left) {
-                update(cur->left, cur, depth + 1);
-                q.push({ cur->left, depth + 1 });
-            }
-
-            if (cur->right) {
-                update(cur->right, cur, depth + 1);
-                q.push({ cur->right, depth + 1 });
-            }
-        }
+        dfs(root, nullptr, 0);
 
         return x_depth == y_depth && x_parent != y_parent;
     }
