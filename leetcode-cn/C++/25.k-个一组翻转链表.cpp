@@ -8,61 +8,60 @@
 #include <vector>
 using namespace std;
 
-// struct ListNode {
-//     int val;
-//     ListNode* next;
-//     ListNode()
-//         : val(0)
-//         , next(nullptr)
-//     {
-//     }
-//     ListNode(int x)
-//         : val(x)
-//         , next(nullptr)
-//     {
-//     }
-//     ListNode(int x, ListNode* next)
-//         : val(x)
-//         , next(next)
-//     {
-//     }
-// };
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode()
+        : val(0)
+        , next(nullptr)
+    {
+    }
+    ListNode(int x)
+        : val(x)
+        , next(nullptr)
+    {
+    }
+    ListNode(int x, ListNode* next)
+        : val(x)
+        , next(next)
+    {
+    }
+};
 
 class Solution {
 public:
     pair<ListNode*, ListNode*> reverse(ListNode* head, ListNode* tail)
     {
         ListNode* pre = tail->next;
-        ListNode* p = head;
+        ListNode* cur = head;
         while (pre != tail) {
-            ListNode* next = p->next;
-            p->next = pre;
-            pre = p;
-            p = next;
+            ListNode* next = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = next;
         }
+
         return { tail, head };
     }
 
-    ListNode*
-    reverseKGroup(ListNode* head, int k)
+    ListNode* reverseKGroup(ListNode* head, int k)
     {
         ListNode* new_head = new ListNode(0, head);
+
         ListNode* pre = new_head;
         ListNode* tail = pre;
-        int num = 0;
 
         while (true) {
             for (int i = 0; i < k; i++) {
                 tail = tail->next;
-                // 不足k个提前退出
                 if (!tail) {
                     return new_head->next;
                 }
             }
 
-            pair<ListNode*, ListNode*> result = reverse(head, tail);
-            head = result.first;
-            tail = result.second;
+            pair<ListNode*, ListNode*> res = reverse(head, tail);
+            head = res.first;
+            tail = res.second;
 
             pre->next = head;
             pre = tail;
