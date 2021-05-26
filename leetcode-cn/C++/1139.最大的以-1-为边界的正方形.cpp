@@ -17,11 +17,11 @@ public:
         vector<vector<int>> dpx(m + 1, vector<int>(n + 1, 0));
         vector<vector<int>> dpy(m + 1, vector<int>(n + 1, 0));
 
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (grid[i - 1][j - 1] == 1) {
-                    dpx[i][j] = dpx[i][j - 1] + 1;
-                    dpy[i][j] = dpy[i - 1][j] + 1;
+        for (int i = m - 1; i >= 0; i--) {
+            for (int j = n - 1; j >= 0; j--) {
+                if (grid[i][j] == 1) {
+                    dpx[i][j] = dpx[i][j + 1] + 1;
+                    dpy[i][j] = dpy[i + 1][j] + 1;
                 }
             }
         }
@@ -29,17 +29,17 @@ public:
         int ans = 0;
 
         // 枚举右下角的点
-        for (int i = m; i >= 1; i--) {
-            for (int j = n; j >= 1; j--) {
-                // 当前点构成的正方形的下边和右边的最短值
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                // 当前点构成的正方形的上边和左边的最短值
                 int cur = min(dpx[i][j], dpy[i][j]);
 
                 if (cur > ans) {
-                    // 现在只能保证下边和右边长度为k，需要检查上边和左边
-                    // 检查上边就要检查 dpx[i-k+1][j]是否大于k
-                    // 检查左边就要检查 dpy[i][j-k+1]是否大于k
+                    // 现在只能保证上边和左边长度为k，需要检查下边和右边
+                    // 检查下边就要检查 dpx[i+k-1][j]是否大于k
+                    // 检查右边就要检查 dpy[i][j+k-1]是否大于k
                     for (int k = cur; k > ans; k--) {
-                        if (dpx[i - k + 1][j] >= k && dpy[i][j - k + 1] >= k) {
+                        if (dpx[i + k - 1][j] >= k && dpy[i][j + k - 1] >= k) {
                             ans = max(ans, k);
                             break;
                         }
