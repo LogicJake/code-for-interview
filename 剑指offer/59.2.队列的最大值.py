@@ -23,10 +23,3 @@ class MaxQueue:
         if ans == self.maxque[0]:
             self.maxque.pop(0)
         return ans
-
-
-# Your MaxQueue object will be instantiated and called as such:
-# obj = MaxQueue()
-# param_1 = obj.max_value()
-# obj.push_back(value)
-# param_3 = obj.pop_front()
