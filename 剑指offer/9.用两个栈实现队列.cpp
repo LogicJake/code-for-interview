@@ -17,26 +17,19 @@ public:
 
     int deleteHead()
     {
-        if (st1.empty()) {
+        if (st2.empty()) {
+            while (!st1.empty()) {
+                st2.push(st1.top());
+                st1.pop();
+            }
+        }
+
+        if (st2.empty()) {
             return -1;
         }
 
-        while (!st1.empty()) {
-            int value = this->st1.top();
-            this->st1.pop();
-
-            this->st2.push(value);
-        }
-
-        int ret = this->st2.top();
-        this->st2.pop();
-
-        while (!st2.empty()) {
-            int value = this->st2.top();
-            this->st2.pop();
-
-            this->st1.push(value);
-        }
+        int ret = st2.top();
+        st2.pop();
 
         return ret;
     }
