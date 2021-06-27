@@ -29,7 +29,7 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head)
     {
-        if (head == nullptr || head->next = nullptr) {
+        if (head == nullptr || head->next == nullptr) {
             return head;
         }
         auto new_head = reverseList(head->next);
