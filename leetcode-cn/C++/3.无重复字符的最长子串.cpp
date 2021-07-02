@@ -10,30 +10,32 @@
 
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
     int lengthOfLongestSubstring(string s)
     {
-        int ans = 0;
         int left = 0;
         int right = 0;
-        unordered_set<int> window;
+        int ans = 0;
 
-        while (right < s.size()) {
-            char c = s[right];
+        unordered_set<char> window;
 
-            right += 1;
-
-            while (window.count(c)) {
+        while (right < s.size())
+        {
+            while (window.count(s[right]))
+            {
                 window.erase(s[left]);
-                left += 1;
+                left++;
             }
 
-            window.insert(c);
+            window.insert(s[right]);
+            right++;
             ans = max(ans, right - left);
         }
 
         return ans;
     }
 };
+
 // @lc code=end
