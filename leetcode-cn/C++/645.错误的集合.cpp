@@ -6,6 +6,7 @@
 
 // @lc code=start
 #include <vector>
+#include <unordered_map>
 using namespace std;
 
 class Solution
@@ -14,29 +15,24 @@ public:
     vector<int> findErrorNums(vector<int> &nums)
     {
         vector<int> ans(2, 0);
-        sort(nums.begin(), nums.end());
+        unordered_map<int, int> cnt;
 
-        int prev = 0;
-        for (int i = 0; i < nums.size(); i++)
+        for (int num : nums)
         {
-            int cur = nums[i];
-
-            if (cur == prev)
-            {
-                ans[0] = cur;
-            }
-
-            if (cur - prev > 1)
-            {
-                ans[1] = prev + 1;
-            }
-
-            prev = cur;
+            cnt[num]++;
         }
 
-        if (nums[nums.size() - 1] != nums.size())
+        for (int i = 1; i < nums.size() + 1; i++)
         {
-            ans[1] = nums.size();
+            if (cnt[i] == 2)
+            {
+                ans[0] = i;
+            }
+
+            if (cnt[i] == 0)
+            {
+                ans[1] = i;
+            }
         }
 
         return ans;
