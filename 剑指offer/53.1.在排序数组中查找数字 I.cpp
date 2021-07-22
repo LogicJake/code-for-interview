@@ -25,8 +25,8 @@ public:
 
         // 寻找出现target的最后一个位置
 
-        int left = 0;
-        int right = nums.size();
+        left = 0;
+        right = nums.size();
 
         while (left < right) {
             int mid = left + (right - left) / 2;
