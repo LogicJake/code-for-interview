@@ -1,37 +1,45 @@
 #include <iostream>
 using namespace std;
 
-struct ListNode {
+struct ListNode
+{
     int val;
-    ListNode* next;
+    ListNode *next;
     ListNode(int x)
-        : val(x)
-        , next(NULL)
+        : val(x), next(NULL)
     {
     }
 };
 
-class Solution {
+class Solution
+{
 public:
-    ListNode* getIntersectionNode(ListNode* headA, ListNode* headB)
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB)
     {
-        ListNode* p1 = headA;
-        ListNode* p2 = headB;
+        ListNode *p = headA;
+        ListNode *q = headB;
 
-        while (p1 != p2) {
-            if (p1 != NULL) {
-                p1 = p1->next;
-            } else {
-                p1 = headB;
+        while (p != q)
+        {
+            if (p != NULL)
+            {
+                p = p->next;
+            }
+            else
+            {
+                p = headB;
             }
 
-            if (p2 != NULL) {
-                p2 = p2->next;
-            } else {
-                p2 = headA;
+            if (q != NULL)
+            {
+                q = q->next;
+            }
+            else
+            {
+                q = headA;
             }
         }
 
-        return p1;
+        return p;
     }
 };
