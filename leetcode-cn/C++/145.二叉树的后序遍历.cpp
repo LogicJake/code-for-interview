@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=144 lang=cpp
+ * @lc app=leetcode.cn id=145 lang=cpp
  *
- * [144] 二叉树的前序遍历
+ * [145] 二叉树的后序遍历
  */
 
 // @lc code=start
@@ -23,21 +23,29 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> preorderTraversal(TreeNode* root)
+    vector<int> postorderTraversal(TreeNode* root)
     {
         stack<TreeNode*> st;
         vector<int> ans;
+        TreeNode* prev = nullptr;
 
         while (root != nullptr || !st.empty()) {
             while (root != nullptr) {
-                ans.push_back(root->val);
                 st.push(root);
                 root = root->left;
             }
 
             root = st.top();
             st.pop();
-            root = root->right;
+
+            if (root->right == nullptr || root->right == prev) {
+                ans.push_back(root->val);
+                prev = root;
+                root = nullptr;
+            } else {
+                st.push(root);
+                root = root->right;
+            }
         }
 
         return ans;
