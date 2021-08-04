@@ -16,22 +16,20 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-#include <vector>
 #include <stack>
+#include <vector>
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    vector<int> inorderTraversal(TreeNode *root)
+    vector<int> inorderTraversal(TreeNode* root)
     {
-        vector<int> ans;
 
-        stack<TreeNode *> st;
-        while (root || !st.empty())
-        {
-            while (root)
-            {
+        vector<int> ans;
+        stack<TreeNode*> st;
+
+        while (!st.empty() or root) {
+            while (root) {
                 st.push(root);
                 root = root->left;
             }
@@ -40,7 +38,6 @@ public:
             st.pop();
 
             ans.push_back(root->val);
-
             root = root->right;
         }
 
