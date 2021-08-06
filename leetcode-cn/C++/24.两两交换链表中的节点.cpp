@@ -19,23 +19,22 @@ class Solution {
 public:
     ListNode* swapPairs(ListNode* head)
     {
-        if (!head || !head->next) {
-            return head;
-        }
+        ListNode* new_head = new ListNode(0);
+        new_head->next= head;
+        ListNode* cur = new_head;
 
-        ListNode* new_head = new ListNode(0, head);
-        ListNode* pre = new_head;
-
-        while (pre->next && pre->next->next) {
-            ListNode* p = pre->next;
-            ListNode* q = pre->next->next;
+        while (cur && cur->next && cur->next->next)
+        {
+            ListNode* p = cur->next;
+            ListNode* q = p->next;
 
             p->next = q->next;
             q->next = p;
-            pre->next = q;
+            cur->next = q;
 
-            pre = p;
+            cur = p;
         }
+        
 
         return new_head->next;
     }
