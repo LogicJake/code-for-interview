@@ -8,34 +8,25 @@
 #include <vector>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    int change(int amount, vector<int>& coins)
+    int change(int amount, vector<int> &coins)
     {
-        int n = coins.size();
-        vector<vector<int>> dp(n, vector<int>(amount + 1, 0));
+        vector<int> dp(amount + 1, 0);
+        dp[0] = 1;
 
-        for (int i = 0; i < n; i++) {
-            dp[i][0] = 1;
-        }
-
-        for (int j = 0; j <= amount; j++) {
-            if (j >= coins[0]) {
-                dp[0][j] = dp[0][j - coins[0]];
-            }
-        }
-
-        for (int i = 1; i < n; i++) {
-            for (int j = 1; j <= amount; j++) {
-                if (j >= coins[i]) {
-                    dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i]];
-                } else {
-                    dp[i][j] = dp[i - 1][j];
+        for (int coin : coins)
+        {
+            for (int i = 1; i < amount + 1; i++)
+            {
+                if (coin <= i)
+                {
+                    dp[i] = dp[i] + dp[i - coin];
                 }
             }
         }
-
-        return dp[n - 1][amount];
+        return dp[amount];
     }
 };
 // @lc code=end
