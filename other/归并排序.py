@@ -1,34 +1,37 @@
 def merge_sort(nums, left, right):
-    if left < right:
-        mid = (left + right) // 2
+    if left >= right:
+        return
 
-        merge_sort(nums, left, mid)
-        merge_sort(nums, mid + 1, right)
+    mid = (left + right) // 2
 
-        i = left
-        j = mid + 1
-        k = left
-        tmp = list(nums)
+    merge_sort(nums, left, mid)
+    merge_sort(nums, mid + 1, right)
 
-        while i < mid + 1 and j < right + 1:
-            if tmp[i] < tmp[j]:
-                nums[k] = tmp[i]
-                i += 1
-            else:
-                nums[k] = tmp[j]
-                j += 1
+    tmp = list(nums)
 
-            k += 1
+    i = left
+    j = mid + 1
+    k = left
 
-        while i < mid + 1:
+    while i <= mid and j <= right:
+        if tmp[i] < tmp[j]:
             nums[k] = tmp[i]
+            k += 1
             i += 1
-            k += 1
-
-        while j < right + 1:
+        else:
             nums[k] = tmp[j]
-            j += 1
             k += 1
+            j += 1
+
+    while i <= mid:
+        nums[k] = tmp[i]
+        k += 1
+        i += 1
+
+    while j <= right:
+        nums[k] = tmp[j]
+        k += 1
+        j += 1
 
 
 nums = [3, 12, 31, 4, 61, 13]
