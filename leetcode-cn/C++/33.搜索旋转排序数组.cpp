@@ -24,9 +24,9 @@ public:
                 return mid;
             }
 
-            if (nums[mid] >= nums[0])
+            if (nums[mid] >= nums[left])
             {
-                if (nums[0] <= target && nums[mid] > target)
+                if (nums[left] <= target && nums[mid] > target)
                 {
                     right = mid;
                 }
@@ -36,7 +36,7 @@ public:
                 }
             }
             else{
-                if (nums[mid] < target && nums[n-1] >= target)
+                if (nums[mid] < target && nums[right-1] >= target)
                 {
                     left = mid + 1;
                 }
