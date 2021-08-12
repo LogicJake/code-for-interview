@@ -41,7 +41,7 @@ public:
             }
             else
             {
-                if (nums[mid] < target && target <= nums[n-1])
+                if (nums[mid] < target && target <= nums[right])
                 {
                     left = mid + 1;
                 }
