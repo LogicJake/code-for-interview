@@ -13,8 +13,7 @@ class Solution {
 public:
     bool search(vector<int>& nums, int target) {
         int left = 0;
-        int n = nums.size();
-        int right = n - 1;
+        int right = nums.size() - 1;
 
         while (left <= right)
         {

@@ -12,10 +12,9 @@ public:
     int search(vector<int>& nums, int target)
     {
         int left = 0;
-        int right = nums.size();
-        int n = nums.size();
+        int right = nums.size() - 1;
 
-        while (left< right)
+        while (left <= right)
         {
             int mid = (left + right) / 2;
 
@@ -28,7 +27,7 @@ public:
             {
                 if (nums[left] <= target && nums[mid] > target)
                 {
-                    right = mid;
+                    right = mid - 1;
                 }
                 else
                 {
@@ -36,13 +35,13 @@ public:
                 }
             }
             else{
-                if (nums[mid] < target && nums[right-1] >= target)
+                if (nums[mid] < target && nums[right] >= target)
                 {
                     left = mid + 1;
                 }
                 else
                 {
-                    right = mid;
+                    right = mid - 1;
                 } 
             }   
         }
