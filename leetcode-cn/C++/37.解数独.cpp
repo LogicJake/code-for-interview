@@ -9,55 +9,66 @@
 #include <vector>
 using namespace std;
 
-class Solution {
-private:
+class Solution
+{
+public:
     bool hang[9][9];
     bool lie[9][9];
     bool block[9][9];
     vector<pair<int, int>> pos;
-    bool valid = false;
+    bool ret = false;
 
-public:
-    void dfs(vector<vector<char>>& board, int index)
+    void help(int index, vector<vector<char>> &board)
     {
-        if (index == pos.size()) {
-            valid = true;
+        if (index == pos.size())
+        {
+            ret = true;
             return;
         }
 
         auto [i, j] = pos[index];
-        for (int num = 0; num < 9; num++) {
-            if (!hang[i][num] && !lie[j][num] && !block[i / 3 * 3 + j / 3][num]) {
+        for (int num = 0; num < 9; num++)
+        {
+            if (!hang[i][num] && !lie[j][num] && !block[(i / 3) * 3 + j / 3][num])
+            {
+                if (ret)
+                {
+                    return;
+                }
+
                 board[i][j] = '1' + num;
-                hang[i][num] = lie[j][num] = block[i / 3 * 3 + j / 3][num] = true;
-                dfs(board, index + 1);
-                hang[i][num] = lie[j][num] = block[i / 3 * 3 + j / 3][num] = false;
-            }
-            if (valid) {
-                break;
+                hang[i][num] = lie[j][num] = block[(i / 3) * 3 + j / 3][num] = true;
+                help(index + 1, board);
+                hang[i][num] = lie[j][num] = block[(i / 3) * 3 + j / 3][num] = false;
             }
         }
     }
 
-    void solveSudoku(vector<vector<char>>& board)
+    void solveSudoku(vector<vector<char>> &board)
     {
         memset(hang, false, sizeof(hang));
         memset(lie, false, sizeof(lie));
         memset(block, false, sizeof(block));
 
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (board[i][j] == '.') {
-                    pos.emplace_back(i, j);
-                } else {
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                if (board[i][j] == '.')
+                {
+                    pos.push_back({i, j});
+                }
+                else
+                {
                     int num = board[i][j] - '1';
                     hang[i][num] = true;
                     lie[j][num] = true;
-                    block[i / 3 * 3 + j / 3][num] = true;
+                    block[(i / 3) * 3 + j / 3][num] = true;
                 }
             }
         }
-        dfs(board, 0);
+
+        help(0, board);
     }
 };
 // @lc code=end
