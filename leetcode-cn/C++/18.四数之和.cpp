@@ -11,55 +11,69 @@
 
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    vector<vector<int>> fourSum(vector<int>& nums, int target)
+    vector<vector<int>> fourSum(vector<int> &nums, int target)
     {
-        int n = nums.size();
-        vector<vector<int>> ans;
         sort(nums.begin(), nums.end());
-        for (int first = 0; first < n - 3; first++) {
-            if (first > 0 && nums[first] == nums[first - 1]) {
+        int n = nums.size();
+
+        vector<vector<int>> ans;
+        long long sum_ = 0;
+        for (int first = 0; first < n - 3; first++)
+        {
+            if (first > 0 && nums[first] == nums[first - 1])
+            {
                 continue;
             }
 
-            if (nums[first] + nums[first + 1] + nums[first + 2] + nums[first + 3] > target) {
+            sum_ = nums[first] + nums[first + 1] + nums[first + 2] + nums[first + 3];
+            if (sum_ > target)
+            {
                 break;
             }
 
-            if (nums[first] + nums[n - 1] + nums[n - 2] + nums[n - 3] < target) {
-                continue;
-            }
-
-            for (int second = first + 1; second < n - 2; second++) {
-                if (second > first + 1 && nums[second] == nums[second - 1]) {
-                    continue;
-                }
-
-                if (nums[first] + nums[second] + nums[second + 1] + nums[second + 2] > target) {
-                    break;
-                }
-
-                if (nums[first] + nums[second] + nums[n - 1] + nums[n - 2] < target) {
+            for (int second = first + 1; second < n; second++)
+            {
+                if (second > first + 1 && nums[second - 1] == nums[second])
+                {
                     continue;
                 }
 
                 int third = second + 1;
                 int forth = n - 1;
 
-                while (third < forth) {
-                    if (third > second + 1 && nums[third] == nums[third - 1]) {
-                        third++;
-                        continue;
+                while (third < forth)
+                {
+                    long long sum_ = 0;
+                    for (int i : {first, second, third, forth})
+                    {
+                        sum_ += nums[i];
                     }
 
-                    if (nums[first] + nums[second] + nums[third] + nums[forth] < target) {
+                    if (sum_ < target)
+                    {
                         third++;
-                    } else if (nums[first] + nums[second] + nums[third] + nums[forth] > target) {
+                    }
+                    else if (sum_ > target)
+                    {
                         forth--;
-                    } else {
-                        ans.push_back({ nums[first], nums[second], nums[third], nums[forth] });
+                    }
+                    else
+                    {
+                        ans.push_back({nums[first], nums[second], nums[third], nums[forth]});
+
+                        while (third < forth && nums[third] == nums[third + 1])
+                        {
+                            third++;
+                        }
                         third++;
+
+                        while (third < forth && nums[forth] == nums[forth - 1])
+                        {
+                            forth--;
+                        }
                         forth--;
                     }
                 }
