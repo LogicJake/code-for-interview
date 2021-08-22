@@ -8,60 +8,65 @@
 #include <vector>
 using namespace std;
 
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode()
-        : val(0)
-        , next(nullptr)
-    {
-    }
-    ListNode(int x)
-        : val(x)
-        , next(nullptr)
-    {
-    }
-    ListNode(int x, ListNode* next)
-        : val(x)
-        , next(next)
-    {
-    }
-};
+// struct ListNode
+// {
+//     int val;
+//     ListNode *next;
+//     ListNode()
+//         : val(0), next(nullptr)
+//     {
+//     }
+//     ListNode(int x)
+//         : val(x), next(nullptr)
+//     {
+//     }
+//     ListNode(int x, ListNode *next)
+//         : val(x), next(next)
+//     {
+//     }
+// };
 
-class Solution {
+class Solution
+{
 public:
-    pair<ListNode*, ListNode*> reverse(ListNode* head, ListNode* tail)
+    pair<ListNode *, ListNode *> reverse(ListNode *head, ListNode *tail)
     {
-        ListNode* pre = tail->next;
-        ListNode* cur = head;
-        while (pre != tail) {
-            ListNode* next = cur->next;
+        ListNode *pre = tail->next;
+        ListNode *cur = head;
+
+        while (pre != tail)
+        {
+            ListNode *next = cur->next;
             cur->next = pre;
             pre = cur;
             cur = next;
         }
 
-        return { tail, head };
+        return {tail, head};
     }
 
-    ListNode* reverseKGroup(ListNode* head, int k)
+    ListNode *reverseKGroup(ListNode *head, int k)
     {
-        ListNode* new_head = new ListNode(0, head);
+        ListNode *new_head = new ListNode();
+        new_head->next = head;
 
-        ListNode* pre = new_head;
-        ListNode* tail = pre;
+        ListNode *pre = new_head;
+        ListNode *tail = new_head;
 
-        while (true) {
-            for (int i = 0; i < k; i++) {
+        while (1)
+        {
+            for (int i = 0; i < k; i++)
+            {
                 tail = tail->next;
-                if (!tail) {
+                if (tail == nullptr)
+                {
                     return new_head->next;
                 }
             }
 
-            pair<ListNode*, ListNode*> res = reverse(head, tail);
-            head = res.first;
-            tail = res.second;
+            pair<ListNode *, ListNode *> ret = reverse(head, tail);
+            head = ret.first;
+            tail = ret.second;
 
             pre->next = head;
             pre = tail;
