@@ -12,50 +12,57 @@
 
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    vector<int> findSubstring(string s, vector<string>& words)
+    vector<int> findSubstring(string s, vector<string> &words)
     {
         vector<int> ans;
         int d = words[0].size();
-        int n = s.size();
-        int m = words.size();
-        int len = m * d;
-        unordered_map<string, int> mp;
+        int size = s.size();
+        int n = words.size();
 
-        for (string word : words) {
-            mp[word]++;
+        unordered_map<string, int> mem;
+        for (string word : words)
+        {
+            mem[word] += 1;
         }
 
         vector<unordered_map<string, int>> window(d);
-        for (int i = 0; i + len <= n && i < d; i++) {
-            for (int j = i; j < i + len; j += d) {
-                string substr = s.substr(j, d);
-                window[i][substr]++;
+
+        // 初始化
+        for (int i = 0; i < d && i + n * d <= size; i++)
+        {
+            for (int j = i; j < n * d; j += d)
+            {
+                string str = s.substr(j, d);
+                window[i][str] += 1;
             }
 
-            if (window[i] == mp) {
+            if (window[i] == mem)
+            {
                 ans.push_back(i);
             }
         }
 
-        for (int i = d; i + len <= n; i++) {
+        for (int i = d; i < size && i + n * d <= size; i++)
+        {
             int index = i % d;
-
+            string add_str = s.substr(i + n * d - d, d);
             string remove_str = s.substr(i - d, d);
-            string add_str = s.substr(i + len - d, d);
 
-            window[index][remove_str]--;
-            if (window[index][remove_str] == 0) {
+            window[index][remove_str] -= 1;
+            if (window[index][remove_str] == 0)
+            {
                 window[index].erase(remove_str);
             }
-            window[index][add_str]++;
+            window[index][add_str] += 1;
 
-            if (window[index] == mp) {
+            if (window[index] == mem)
+            {
                 ans.push_back(i);
             }
         }
-
         return ans;
     }
 };
