@@ -15,26 +15,31 @@
 //     }
 // };
 
-class Solution {
+class Solution
+{
 public:
-    ListNode* swapPairs(ListNode* head)
+    ListNode *swapPairs(ListNode *head)
     {
-        ListNode* new_head = new ListNode(0);
-        new_head->next= head;
-        ListNode* cur = new_head;
-
-        while (cur && cur->next && cur->next->next)
+        if (head == nullptr)
         {
-            ListNode* p = cur->next;
-            ListNode* q = p->next;
+            return head;
+        }
 
+        ListNode *new_head = new ListNode();
+        new_head->next = head;
+
+        ListNode *pre = new_head;
+
+        while (pre->next && pre->next->next)
+        {
+            ListNode *p = pre->next;
+            ListNode *q = pre->next->next;
+            pre->next = q;
             p->next = q->next;
             q->next = p;
-            cur->next = q;
 
-            cur = p;
+            pre = p;
         }
-        
 
         return new_head->next;
     }
