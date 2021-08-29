@@ -22,46 +22,52 @@
 
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    vector<vector<int>> zigzagLevelOrder(TreeNode* root)
+    vector<vector<int>> zigzagLevelOrder(TreeNode *root)
     {
+        int direction = 0;
         vector<vector<int>> ans;
 
-        if (root == nullptr) {
-            return ans;
+        queue<TreeNode *> q;
+        if (root == nullptr)
+        {
+            return {};
         }
-
-        int diretion = 0;
-        queue<TreeNode*> q;
         q.push(root);
-
-        while (!q.empty()) {
+        while (!q.empty())
+        {
             int sz = q.size();
-            vector<int> temp;
+            vector<int> tmp;
 
-            for (int i = 0; i < sz; i++) {
-                root = q.front();
+            for (int i = 0; i < sz; i++)
+            {
+                auto root = q.front();
                 q.pop();
+                tmp.push_back(root->val);
 
-                temp.push_back(root->val);
-
-                if (root->left) {
+                if (root->left)
+                {
                     q.push(root->left);
                 }
 
-                if (root->right) {
+                if (root->right)
+                {
                     q.push(root->right);
                 }
             }
-            if (diretion == 0) {
-                ans.push_back(temp);
-            } else {
-                reverse(temp.begin(), temp.end());
-                ans.push_back(temp);
-            }
 
-            diretion = (diretion + 1) % 2;
+            if (direction == 0)
+            {
+                ans.push_back(tmp);
+            }
+            else
+            {
+                reverse(tmp.begin(), tmp.end());
+                ans.push_back(tmp);
+            }
+            direction = (direction + 1) % 2;
         }
 
         return ans;
