@@ -15,34 +15,32 @@ public:
     string longestPalindrome(string s)
     {
         int n = s.size();
-        vector<vector<bool>> dp(n, vector<bool>(n));
+        vector<vector<int>> dp(n, vector<int>(n, false));
+
+        for (int i = 0; i < n; i++)
+        {
+            dp[i][i] = true;
+        }
+
         int start = 0;
         int end = 0;
 
-        for (int len = 1; len <= s.size(); len++)
+        for (int len = 2; len <= n; len++)
         {
-            for (int i = 0; i < s.size(); i++)
+            for (int i = 0; i < n; i++)
             {
                 int j = i + len - 1;
-                if (j >= s.size())
+                if (j >= n)
                 {
                     break;
                 }
 
                 if (s[i] == s[j])
                 {
-                    if (j - i < 3)
+                    if (len == 2 || (i + 1 <= j - 1 && dp[i + 1][j - 1]))
                     {
                         dp[i][j] = true;
                     }
-                    else
-                    {
-                        dp[i][j] = dp[i + 1][j - 1];
-                    }
-                }
-                else
-                {
-                    dp[i][j] = false;
                 }
 
                 if (dp[i][j] && j - i > end - start)
