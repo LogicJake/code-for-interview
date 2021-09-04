@@ -10,43 +10,44 @@
 #include <vector>
 
 using namespace std;
-class Solution {
+class Solution
+{
 public:
     vector<string> ans;
     string path = "";
     unordered_map<char, string> map = {
-        { '2', "abc" },
-        { '3', "def" },
-        { '4', "ghi" },
-        { '5', "jkl" },
-        { '6', "mno" },
-        { '7', "pqrs" },
-        { '8', "tuv" },
-        { '9', "wxyz" }
-    };
+        {'2', "abc"},
+        {'3', "def"},
+        {'4', "ghi"},
+        {'5', "jkl"},
+        {'6', "mno"},
+        {'7', "pqrs"},
+        {'8', "tuv"},
+        {'9', "wxyz"}};
 
-    void help(const string digits, int index)
+    void help(int index, int n, string digits)
     {
-        if (index == digits.size()) {
-            ans.push_back(path);
+        if (index == n)
+        {
+            if (path != "")
+            {
+                ans.push_back(path);
+            }
+
             return;
         }
 
-        string chars = map[digits[index]];
-        for (char c : chars) {
-            path += c;
-            help(digits, index + 1);
+        for (char c : map[digits[index]])
+        {
+            path.push_back(c);
+            help(index + 1, n, digits);
             path.pop_back();
         }
     }
 
     vector<string> letterCombinations(string digits)
     {
-        if (digits.size() == 0) {
-            return {};
-        }
-
-        help(digits, 0);
+        help(0, digits.size(), digits);
         return ans;
     }
 };
