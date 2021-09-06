@@ -8,38 +8,43 @@
 #include <iostream>
 using namespace std;
 
-// struct ListNode {
+// struct ListNode
+// {
 //     int val;
-//     ListNode* next;
+//     ListNode *next;
 //     ListNode(int x)
-//         : val(x)
-//         , next(NULL)
+//         : val(x), next(NULL)
 //     {
 //     }
 // };
 
-class Solution {
+class Solution
+{
 public:
-    ListNode* removeNthFromEnd(ListNode* head, int n)
+    ListNode *removeNthFromEnd(ListNode *head, int n)
     {
-        ListNode* dummy = new ListNode(0, head);
+        ListNode *fast = new ListNode(0);
+        ListNode *slow = new ListNode(0);
+        ListNode *new_head = new ListNode(0);
+        new_head->next = head;
 
-        ListNode* slow = dummy;
-        ListNode* fast = head;
+        fast->next = new_head;
+        slow->next = new_head;
 
-        int cnt = 0;
-        while (fast != NULL && cnt < n) {
+        for (int i = 0; i < n; i++)
+        {
             fast = fast->next;
-            cnt += 1;
         }
 
-        while (fast != NULL) {
+        while (fast->next != nullptr)
+        {
             slow = slow->next;
             fast = fast->next;
         }
 
         slow->next = slow->next->next;
-        return dummy->next;
+
+        return new_head->next;
     }
 };
 // @lc code=end
