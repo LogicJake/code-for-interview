@@ -11,31 +11,40 @@
 
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
     bool isValid(string s)
     {
-        unordered_map<char, char> pairs = {
-            { ')', '(' },
-            { ']', '[' },
-            { '}', '{' }
+        unordered_map<char, char> map = {
+            {')', '('},
+            {'}', '{'},
+            {']', '['},
         };
-
         stack<char> st;
 
-        for (char c : s) {
-            if (pairs.count(c)) {
-                if (st.empty() || st.top() != pairs[c]) {
+        for (char c : s)
+        {
+            if (c == '(' || c == '{' || c == '[')
+            {
+                st.push(c);
+            }
+            else
+            {
+                if (st.empty() || map[c] != st.top())
+                {
                     return false;
                 }
                 st.pop();
-
-            } else {
-                st.push(c);
             }
         }
 
-        return st.empty();
+        if (st.empty())
+        {
+            return true;
+        }
+
+        return false;
     }
 };
 // @lc code=end
